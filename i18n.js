@@ -100,6 +100,7 @@
       'lightbox.hint': "Scroll to zoom &middot; drag to pan &middot; double-click to reset",
       'section.keyFeatures': "Key Features",
       'section.myRole': "My Role",
+      'game.gameplay.title': "Gameplay",
 
       'game.dstp.role': "Solo Developer — Game Jam",
       'game.dstp.desc': "A hyper-casual arcade game I designed and built from scratch in a <strong>single week</strong> for the university game jam, on a <strong>custom C++ engine</strong> on top of Raylib. Every design call, from mechanic to pacing, was mine under the deadline.",
@@ -437,6 +438,7 @@
       'lightbox.hint': "스크롤로 확대/축소 &middot; 드래그로 이동 &middot; 더블클릭으로 초기화",
       'section.keyFeatures': "핵심 기능",
       'section.myRole': "제 역할",
+      'game.gameplay.title': "플레이 영상",
 
       'game.dstp.role': "솔로 개발자 · 게임잼",
       'game.dstp.desc': "대학 게임잼을 위해 <strong>일주일</strong> 만에 혼자 디자인하고 처음부터 만든 하이퍼캐주얼 아케이드 게임입니다. Raylib 위에 <strong>커스텀 C++ 엔진</strong>을 올려서 만들었고, 마감 안에서 메카닉부터 페이싱까지 모든 디자인 결정이 제 것이었습니다.",
