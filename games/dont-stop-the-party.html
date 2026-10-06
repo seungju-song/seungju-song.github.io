@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Don't Stop the Party — Seungju Song</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<script src="../i18n.js" defer></script>
+</head>
+<body>
+
+<header class="player-header">
+  <div class="wrap">
+    <a class="back-link" href="../index.html#projects" data-i18n="game.backToPortfolio">&larr; Back to portfolio</a>
+    <div style="display:flex; align-items:center; gap:14px;">
+      <div class="lang-switch" id="lang-switch">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="ko">한국어</button>
+      </div>
+      <a class="btn btn-outline btn-small" href="dont-stop-the-party/index.html" target="_blank" rel="noopener" data-i18n="game.openNewTab">Open in new tab ↗</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap player-stage">
+    <div class="stage-frame stage-frame--4-3" id="stage">
+      <div class="stage-loading" id="loading">
+        <div class="spinner"></div>
+        <span data-i18n="game.loading">Loading game…</span>
+      </div>
+      <iframe id="game-frame" src="dont-stop-the-party/index.html" title="Don't Stop the Party" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+    <div class="fullscreen-action">
+      <button type="button" class="btn btn-outline btn-small" id="fullscreen-btn" data-i18n="game.fullscreenBtn">Fullscreen ⛶</button>
+    </div>
+
+    <div class="player-info">
+      <div>
+        <h1>Don't Stop the Party</h1>
+        <div class="role" data-i18n="game.dstp.role">Solo Developer — Game Jam</div>
+        <p data-i18n="game.dstp.desc">
+          A hyper-casual arcade game I designed and built from scratch in a <strong>single week</strong> for the
+          university game jam, on a <strong>custom C++ engine</strong> on top of Raylib. Every design call, from
+          mechanic to pacing, was mine under the deadline.
+        </p>
+        <a class="btn btn-outline btn-small" href="https://github.com/seungju-digipen/Dont-stop-the-party" target="_blank" rel="noopener" data-i18n="btn.viewSource">Source ↗</a>
+
+        <h4 class="feature-heading" data-i18n="section.keyFeatures">Key Features</h4>
+        <ul class="feature-list">
+          <li data-i18n="game.dstp.feature1"><strong>Random enemy spawns</strong> keep every run unpredictable</li>
+          <li data-i18n="game.dstp.feature2"><strong>Score-driven runs</strong> with a saved high-score ranking</li>
+          <li data-i18n="game.dstp.feature3"><strong>Screen shake, confetti, and spotlight sweeps</strong> for hit feedback</li>
+          <li data-i18n="game.dstp.feature4"><strong>Minimal controls</strong> (movement + one action button), built for one-week jam judging</li>
+        </ul>
+
+        <h4 class="feature-heading" data-i18n="section.myRole">My Role</h4>
+        <p class="gallery-intro" data-i18n="game.dstp.myRoleIntro">Solo, in one week &mdash; I owned every part of it:</p>
+        <ul class="feature-list">
+          <li data-i18n="game.dstp.myRole1"><strong>Core loop design</strong> &mdash; movement, enemy spawns, scoring</li>
+          <li data-i18n="game.dstp.myRole2"><strong>Engine programming</strong> &mdash; the custom C++/Raylib engine underneath it</li>
+          <li data-i18n="game.dstp.myRole3"><strong>Art and sound</strong>, done myself under the deadline</li>
+          <li data-i18n="game.dstp.myRole4"><strong>Pacing, difficulty, and feedback</strong> &mdash; every call was mine to make and live with</li>
+        </ul>
+      </div>
+      <div class="info-rail">
+        <div class="info-card">
+          <h4 data-i18n="game.controls">Controls</h4>
+          <ul>
+            <li data-i18n="game.dstp.control1">W / S — navigate menus</li>
+            <li data-i18n="game.dstp.control2">A / D — steer (you always move forward)</li>
+            <li data-i18n="game.dstp.control3">Space (hold) — slow down to aim</li>
+            <li data-i18n="game.dstp.control4">Enter — fire your party popper</li>
+            <li data-i18n="game.dstp.control5">R — restart</li>
+          </ul>
+        </div>
+        <div class="loop-why-box" id="why">
+          <div class="loop-why-row">
+            <h5 data-i18n="card.label.coreLoop">Core Loop</h5>
+            <p data-i18n="card.dstp.coreLoop">Fire party poppers at the targets scattered around the map as you glide past &mdash; land the shot and you keep going, miss it once and the run ends right there.</p>
+          </div>
+          <div class="loop-why-row">
+            <h5 data-i18n="card.label.why">Why</h5>
+            <p data-i18n="card.dstp.why">The jam's theme was &quot;One Time Use.&quot; I swapped the usual gun for a party popper to work around DigiPen's game jam rule against depicting killing, and built that same one-time-use idea into every throw itself: miss the one shot you've lined up, and the run ends on the spot.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="gallery-section" id="design">
+      <h3 class="gallery-title" data-i18n="game.dstp.design.title">Design: Speed Is the Risk Dial</h3>
+      <p class="gallery-intro" data-i18n="game.dstp.design.intro">Every number below is pulled straight from the shipped C++ &mdash; a one-week jam didn't leave time for a separate design doc, so the source <strong>is</strong> the design doc.</p>
+
+      <div class="archetype-grid">
+        <div class="archetype-col">
+          <h5 class="archetype-label" data-i18n="game.dstp.design.loopLabel">The Loop</h5>
+          <div class="design-card">
+            <h5 data-i18n="game.dstp.design.speedTitle">Speed Is the Risk Dial</h5>
+            <p class="card-effect" data-i18n="game.dstp.design.speedEffect">Your one movement stat ranges 200&ndash;500: hold Space to brake toward 200, let go to climb toward 500 at 100/s.</p>
+            <p class="card-intent" data-i18n="game.dstp.design.speedIntent">It's also the score multiplier &mdash; braking to aim trades away the bonus you'd get for staying fast.</p>
+          </div>
+          <div class="design-card">
+            <h5 data-i18n="game.dstp.design.patrolTitle">Enemies Patrol, They Don't Hunt</h5>
+            <p class="card-effect" data-i18n="game.dstp.design.patrolEffect">Each of the 50 enemies just shuffles back and forth within 400px of its spawn point &mdash; no chase AI at all.</p>
+            <p class="card-intent" data-i18n="game.dstp.design.patrolIntent">The challenge is reading patrol lines and closing the distance yourself, not reacting to pursuit.</p>
+          </div>
+        </div>
+        <div class="archetype-col">
+          <h5 class="archetype-label" data-i18n="game.dstp.design.riskLabel">The Risk</h5>
+          <div class="design-card">
+            <h5 data-i18n="game.dstp.design.popperTitle">The Popper Doesn't Travel</h5>
+            <p class="card-effect" data-i18n="game.dstp.design.popperEffect">A throw is a fixed 60px hitbox that lasts 0.3s right where you fired it &mdash; it never actually leaves your position.</p>
+            <p class="card-intent" data-i18n="game.dstp.design.popperIntent">"Aiming" means standing on top of an enemy before you commit.</p>
+          </div>
+          <div class="design-card">
+            <h5 data-i18n="game.dstp.design.missTitle">One Miss Ends the Run</h5>
+            <p class="card-effect" data-i18n="game.dstp.design.missEffect">If that 0.3-second window closes without a hit, the run is over &mdash; no second popper, no retry.</p>
+            <p class="card-intent" data-i18n="game.dstp.design.missIntent">Every throw carries the jam's "One Time Use" theme all the way into the scoring loop.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cost-table-wrap">
+        <table class="cost-table">
+          <thead>
+            <tr>
+              <th data-i18n="game.dstp.design.colMetric">Metric</th>
+              <th data-i18n="game.dstp.design.colValue">Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td data-i18n="game.dstp.design.statSpeedLabel">Speed range</td><td data-i18n="game.dstp.design.statSpeedValue">200&ndash;500 units/sec</td></tr>
+            <tr><td data-i18n="game.dstp.design.statScoreLabel">Score per hit</td><td data-i18n="game.dstp.design.statScoreValue">500 at min speed, 1,200&ndash;1,500 above it</td></tr>
+            <tr><td data-i18n="game.dstp.design.statPopperLabel">Popper hit window</td><td data-i18n="game.dstp.design.statPopperValue">0.3s &middot; 60px</td></tr>
+            <tr><td data-i18n="game.dstp.design.statEnemyLabel">Enemies / patrol radius</td><td data-i18n="game.dstp.design.statEnemyValue">50 &middot; 400px</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="design-insight" data-i18n="game.dstp.design.insight">Cross the min-speed threshold by a hair and the payout jumps from 500 to 1,200+ &mdash; braking for an easier shot means giving that up.</p>
+    </section>
+
+    <section class="gallery-section" id="behind-the-scenes">
+      <h3 class="gallery-title" data-i18n="game.dstp.gallery.title">Behind the Scenes</h3>
+      <p class="gallery-intro" data-i18n="game.dstp.gallery.intro">The two systems behind the design above, straight from the C++ &mdash; <strong>cleaned up here for readability</strong> (named constants, an extracted helper); behavior is unchanged from the shipped jam build.</p>
+
+      <div class="tool-card">
+        <h5>Enemy.cpp</h5>
+        <p data-i18n="game.dstp.gallery.enemyDesc">DigiPen's jam rules banned depicting killing, so getting hit doesn't destroy an enemy — it drops them into a <strong>5-second "dancing" state</strong> (spinning in place, tinted red) before they respawn somewhere new on the map.</p>
+        <div class="code-snippet">
+          <div class="code-label"><span>Enemy.cpp</span> <span class="code-label-badge" data-i18n="code.cleanedUp">Cleaned up</span></div>
+          <pre><code>// Stun length instead of destroying the enemy (jam rule: no depicting killing)
+constexpr float kDanceDuration = 5.0f;
+
+void Enemy::GotHit()
+{
+	state = EnemyState::DANCING;
+	color = RED;
+	respawn_timer = kDanceDuration;
+}
+
+// ...
+
+else if (state == EnemyState::DANCING)
+{
+	current_anim_state = EnemyState::DANCING;
+	rotation += 360.0f * delta_time;
+	respawn_timer -= delta_time;
+	if (respawn_timer &lt;= 0.0f)
+	{
+		Reset(map_width, map_height);
+	}
+}</code></pre>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <h5>Game.cpp</h5>
+        <p data-i18n="game.dstp.gallery.missDesc">The jam theme was "One Time Use." Each party-popper throw is that one-time use: land it on an enemy and your popper recharges (plus a speed-scaled score bonus); let it fizzle out without hitting anything, and <strong>the run ends right there</strong>.</p>
+        <div class="code-snippet">
+          <div class="code-label"><span>Game.cpp</span> <span class="code-label-badge" data-i18n="code.cleanedUp">Cleaned up</span></div>
+          <pre><code>// Named the magic numbers and pulled the score formula into its own
+// function — same result as the original inline ternary.
+constexpr int kMissHitScore = 500;    // hit while at/under min speed: the "safe" floor
+constexpr int kHitScoreBase = 1000;   // hit while above min speed: the risk payoff
+constexpr int kSpeedScoreStep = 10;   // +10 score per 10 units of speed above the base
+
+int ScoreForHit(float hero_speed, float min_speed)
+{
+    if (hero_speed <= min_speed) return kMissHitScore;
+    return kHitScoreBase + ((int)hero_speed / kSpeedScoreStep) * kSpeedScoreStep;
+}
+
+// ...
+
+if (CheckCollisionRecs(popper.GetHitbox(), enemy.GetHitbox()))
+{
+    popper.SetHit();
+    enemy.GotHit();
+    hero.GetPopper();
+    score += ScoreForHit(hero.GetSpeed(), hero.GetMinSpeed());
+    // ...
+    break;
+}
+
+// ...
+
+for (int i = partyPoppers.size() - 1; i >= 0; i--)
+{
+    if (partyPoppers[i].IsActive()) continue;
+
+    if (!partyPoppers[i].DidHit())
+    {
+        UpdateRanking(); // the popper's 0.3s window closed with nothing hit: run over
+        return;
+    }
+    partyPoppers.erase(partyPoppers.begin() + i);
+}</code></pre>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script>
+  const frame = document.getElementById('game-frame');
+  const loading = document.getElementById('loading');
+  function hideLoading() {
+    loading.style.opacity = '0';
+    setTimeout(() => { loading.style.display = 'none'; }, 300);
+  }
+  let frameAlreadyLoaded = false;
+  try { frameAlreadyLoaded = frame.contentDocument && frame.contentDocument.readyState === 'complete'; } catch (e) {}
+  if (frameAlreadyLoaded) {
+    hideLoading();
+  } else {
+    frame.addEventListener('load', () => setTimeout(hideLoading, 400));
+  }
+
+  const fullscreenBtn = document.getElementById('fullscreen-btn');
+  if (fullscreenBtn) {
+    fullscreenBtn.addEventListener('click', () => {
+      const req = frame.requestFullscreen || frame.webkitRequestFullscreen || frame.mozRequestFullScreen || frame.msRequestFullscreen;
+      if (req) req.call(frame);
+    });
+  }
+</script>
+
+</body>
+</html>

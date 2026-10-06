@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Street Typer — Seungju Song</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<script src="../i18n.js" defer></script>
+</head>
+<body>
+
+<header class="player-header">
+  <div class="wrap">
+    <a class="back-link" href="../index.html#projects" data-i18n="game.backToPortfolio">&larr; Back to portfolio</a>
+    <div style="display:flex; align-items:center; gap:14px;">
+      <div class="lang-switch" id="lang-switch">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="ko">한국어</button>
+      </div>
+      <a class="btn btn-outline btn-small" href="https://store.steampowered.com/app/5129590/StreetTyper/" target="_blank" rel="noopener" data-i18n="btn.viewOnSteam">View on Steam ↗</a>
+      <a class="btn btn-outline btn-small" href="https://handalhandal.itch.io/streettyper" target="_blank" rel="noopener" data-i18n="game.openNewTab">Open in new tab ↗</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap player-stage">
+    <div class="stage-frame" id="stage">
+      <div class="stage-loading" id="loading">
+        <div class="spinner"></div>
+        <span data-i18n="game.loadingUnity">Loading game… (large Unity build, may take a moment)</span>
+      </div>
+      <iframe id="game-frame" src="https://html-classic.itch.zone/html/18714394/StreetTyper_Web4/index.html?v=1786130897" title="Street Typer" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+    <p class="fullscreen-hint" data-i18n="game.tipUnity">Tip: use the in-game fullscreen button once it loads for the best view.</p>
+
+    <div class="player-info">
+      <div>
+        <h1>Street Typer</h1>
+        <div class="role" data-i18n="game.streetTyper.role">Game Designer &amp; Programmer — MINISONG</div>
+        <p data-i18n="game.streetTyper.desc">
+          "Type &amp; Fight!" &mdash; a deckbuilding typing action roguelite about a girl fighting to earn
+          her dragon mother's approval. This is the same build now live on Steam. I led design at
+          MINISONG &mdash; balancing the <strong>card system and difficulty curve</strong> &mdash; while also programming
+          the battle manager and stage transitions.
+        </p>
+        <a class="btn btn-outline btn-small" href="https://github.com/Seohyeon-Min/StreetTyper" target="_blank" rel="noopener" data-i18n="btn.viewSource">Source ↗</a>
+
+        <h4 class="feature-heading" data-i18n="section.keyFeatures">Key Features</h4>
+        <ul class="feature-list">
+          <li data-i18n="game.streetTyper.feature1"><strong>Typing-based combat</strong> &mdash; type prompted words and phrases to attack, defend, and combo</li>
+          <li data-i18n="game.streetTyper.feature2"><strong>Deckbuilding card system</strong> layered on top of the typing loop</li>
+          <li data-i18n="game.streetTyper.feature3"><strong>Steady difficulty curve</strong> tuned across stages</li>
+          <li data-i18n="game.streetTyper.feature4"><strong>Multi-language support</strong> built into the core systems</li>
+        </ul>
+
+        <h4 class="feature-heading" data-i18n="section.myRole">My Role</h4>
+        <p class="gallery-intro" data-i18n="game.streetTyper.myRoleIntro">I led design at MINISONG, and programmed alongside two other developers:</p>
+        <ul class="feature-list">
+          <li data-i18n="game.streetTyper.myRole1"><strong>Card system, level progression, and difficulty curve</strong> &mdash; mine to design</li>
+          <li data-i18n="game.streetTyper.myRole2"><strong>Battle manager, stage transitions, and multi-language support</strong> &mdash; programmed with the team</li>
+        </ul>
+      </div>
+      <div class="info-rail">
+        <div class="info-card">
+          <h4 data-i18n="game.controls">Controls</h4>
+          <ul>
+            <li data-i18n="game.streetTyper.control1">Menus: WASD / arrow keys to navigate, Z / Space / Enter to confirm, X to cancel</li>
+            <li data-i18n="game.streetTyper.control2">In battle: just type the prompted words and phrases</li>
+          </ul>
+        </div>
+        <div class="loop-why-box" id="why">
+          <div class="loop-why-row">
+            <h5 data-i18n="card.label.coreLoop">Core Loop</h5>
+            <p data-i18n="card.streetTyper.coreLoop">Type prompted words and phrases to attack, defend, and combo in real time, spend the cards you draw to shape that turn's options, and ride the difficulty curve up through stages.</p>
+          </div>
+          <div class="loop-why-row">
+            <h5 data-i18n="card.label.why">Why</h5>
+            <p data-i18n="card.streetTyper.why">The original idea came from my teammate Seohyeon. Looking for a way to push it further, I thought of the needlessly long, over-the-top move names from Japanese manga and anime &mdash; typing those out as your attack felt like it'd be fun, so that became the hook.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="gallery-section" id="design-process">
+      <h3 class="gallery-title" data-i18n="game.streetTyper.design.title">Designing the Card System</h3>
+      <p class="gallery-intro" data-i18n="game.streetTyper.design.intro">A look at the design work behind the card system in the build above &mdash; the risk built into the turn timer, the archetypes two scaling cards create, and the keystroke data I used to keep English and Korean equally difficult to play.</p>
+
+      <div class="tag-list" style="margin-bottom: 30px;">
+        <span class="tag" data-i18n="tag.cardSystemDesign">Card System Design</span>
+        <span class="tag" data-i18n="game.streetTyper.design.tagBalancing">Data-Driven Balancing</span>
+        <span class="tag" data-i18n="game.streetTyper.design.tagLocalization">EN/KO Difficulty Design</span>
+      </div>
+
+      <h4 class="feature-heading" data-i18n="game.streetTyper.design.archetypeHeading">Card Archetypes: Risk, Reward, Synergy</h4>
+      <p class="gallery-caption" data-i18n="game.streetTyper.design.archetypeCaption">Every word either buys time or spends it. Two cards I designed build directly on that trade-off to create Street Typer's clearest deck archetypes.</p>
+      <ul class="feature-list" style="margin-bottom: 20px;">
+        <li data-i18n="game.streetTyper.design.archetypeBreak1"><strong>Time economy:</strong> Jab and Quick add a second to the timer; Hook and Uppercut cut a second but hit harder.</li>
+        <li data-i18n="game.streetTyper.design.archetypeBreak2"><strong>The trick:</strong> instead of raw power, a card's damage scales off something that already happened this turn.</li>
+      </ul>
+
+      <div class="archetype-grid">
+        <div class="archetype-col">
+          <h5 class="archetype-label" data-i18n="game.streetTyper.design.burstLabel">Burst Deck</h5>
+          <div class="design-card">
+            <h5>Perfect <span class="card-name-ko">퍼펙트</span></h5>
+            <p class="card-effect" data-i18n="game.streetTyper.design.perfectEffect">Next attack: damage +2 for every second the timer dropped this turn, &minus;2 for every second it rose.</p>
+            <p class="card-intent" data-i18n="game.streetTyper.design.perfectIntent">Rewards spending the turn on power (Hook, Uppercut) instead of safe, time-adding words.</p>
+          </div>
+          <div class="design-card">
+            <h5>Knee <span class="card-name-ko">니킥</span></h5>
+            <p class="card-effect" data-i18n="game.streetTyper.design.kneeEffect">Power +10 damage. &minus;1 damage for every action used this turn.</p>
+            <p class="card-intent" data-i18n="game.streetTyper.design.kneeIntent">Hits hardest when it's nearly the only thing you do this turn &mdash; stacking more actions on top costs you damage.</p>
+          </div>
+        </div>
+        <div class="archetype-col">
+          <h5 class="archetype-label" data-i18n="game.streetTyper.design.comboLabel">Combo Deck</h5>
+          <div class="design-card">
+            <h5>Chop <span class="card-name-ko">촙</span></h5>
+            <p class="card-effect" data-i18n="game.streetTyper.design.chopEffect">0 base damage. +2 damage for every action used this turn.</p>
+            <p class="card-intent" data-i18n="game.streetTyper.design.chopIntent">Worthless on its own &mdash; it only pays off once a long combo is already stacked.</p>
+          </div>
+          <div class="design-card">
+            <h5>Headbutt <span class="card-name-ko">박치기</span></h5>
+            <p class="card-effect" data-i18n="game.streetTyper.design.headbuttEffect">+2 damage for every modifier used this turn.</p>
+            <p class="card-intent" data-i18n="game.streetTyper.design.headbuttIntent">A finishing move that gets stronger with every modifier buff stacked this turn &mdash; it turns small, separate buffs into one bigger hit.</p>
+          </div>
+        </div>
+      </div>
+      <p class="design-insight" data-i18n="game.streetTyper.design.archetypeInsight">Same trick both times: count something from earlier in the turn &mdash; seconds, actions, modifiers &mdash; instead of adding a flat number.</p>
+
+      <h4 class="feature-heading" data-i18n="game.streetTyper.design.dataHeading">Balancing With Data</h4>
+      <p class="gallery-caption" data-i18n="game.streetTyper.design.dataBody">A typo doesn't just cost a turn &mdash; it wipes every word already combo'd into the buffer. That makes a card's typing length a real risk, so I tracked the exact keystroke cost of every card in both languages.</p>
+
+      <div class="stat-callout">
+        <div class="stat-num">5.43<span data-i18n="game.streetTyper.design.statEnLabel">EN avg keystrokes / card</span></div>
+        <div class="stat-num stat-ko">5.61<span data-i18n="game.streetTyper.design.statKoLabel">KO avg taps / card</span></div>
+      </div>
+      <p class="stat-footnote" data-i18n="game.streetTyper.design.statNote">Across all 28 shipped cards.</p>
+
+      <p class="gallery-caption" data-i18n="game.streetTyper.design.chartCaption">Most cards land within a keystroke of their counterpart in the other language &mdash; a few didn't.</p>
+      <div class="chart-legend">
+        <span><i class="legend-dot"></i> <span data-i18n="game.streetTyper.design.legendEn">EN keystrokes</span></span>
+        <span><i class="legend-dot ko"></i> <span data-i18n="game.streetTyper.design.legendKo">KO taps</span></span>
+      </div>
+
+      <div class="cost-chart">
+        <div class="cost-row">
+          <div class="cost-label">Jab <span class="cost-label-ko">잽</span></div>
+          <div class="cost-bars">
+            <div class="cost-bar-track"><div class="cost-bar" style="width:30%"></div><span class="cost-bar-val">3</span></div>
+            <div class="cost-bar-track"><div class="cost-bar ko" style="width:30%"></div><span class="cost-bar-val">3</span></div>
+          </div>
+        </div>
+        <div class="cost-row">
+          <div class="cost-label">Kick <span class="cost-label-ko">킥</span></div>
+          <div class="cost-bars">
+            <div class="cost-bar-track"><div class="cost-bar" style="width:40%"></div><span class="cost-bar-val">4</span></div>
+            <div class="cost-bar-track"><div class="cost-bar ko" style="width:30%"></div><span class="cost-bar-val">3</span></div>
+          </div>
+        </div>
+        <div class="cost-row">
+          <div class="cost-label">Power <span class="cost-label-ko">파워</span></div>
+          <div class="cost-bars">
+            <div class="cost-bar-track"><div class="cost-bar" style="width:50%"></div><span class="cost-bar-val">5</span></div>
+            <div class="cost-bar-track"><div class="cost-bar ko" style="width:50%"></div><span class="cost-bar-val">5</span></div>
+          </div>
+        </div>
+        <div class="cost-row">
+          <div class="cost-label">Punch <span class="cost-label-ko">펀치</span></div>
+          <div class="cost-bars">
+            <div class="cost-bar-track"><div class="cost-bar" style="width:50%"></div><span class="cost-bar-val">5</span></div>
+            <div class="cost-bar-track"><div class="cost-bar ko" style="width:50%"></div><span class="cost-bar-val">5</span></div>
+          </div>
+        </div>
+        <div class="cost-row">
+          <div class="cost-label">Awesome <span class="cost-label-ko">어썸</span></div>
+          <div class="cost-bars">
+            <div class="cost-bar-track"><div class="cost-bar" style="width:70%"></div><span class="cost-bar-val">7</span></div>
+            <div class="cost-bar-track"><div class="cost-bar ko" style="width:60%"></div><span class="cost-bar-val">6</span></div>
+          </div>
+        </div>
+        <div class="cost-row">
+          <div class="cost-label">Uppercut <span class="cost-label-ko">어퍼컷</span></div>
+          <div class="cost-bars">
+            <div class="cost-bar-track"><div class="cost-bar" style="width:80%"></div><span class="cost-bar-val">8</span></div>
+            <div class="cost-bar-track"><div class="cost-bar ko" style="width:70%"></div><span class="cost-bar-val">7</span></div>
+          </div>
+        </div>
+        <div class="cost-row">
+          <div class="cost-label">Colorful <span class="cost-label-ko">컬러풀</span></div>
+          <div class="cost-bars">
+            <div class="cost-bar-track"><div class="cost-bar" style="width:80%"></div><span class="cost-bar-val">8</span></div>
+            <div class="cost-bar-track"><div class="cost-bar ko" style="width:80%"></div><span class="cost-bar-val">8</span></div>
+          </div>
+        </div>
+        <div class="cost-row">
+          <div class="cost-label">Dempsey <span class="cost-label-ko">뎀프시롤</span></div>
+          <div class="cost-bars">
+            <div class="cost-bar-track"><div class="cost-bar" style="width:70%"></div><span class="cost-bar-val">7</span></div>
+            <div class="cost-bar-track"><div class="cost-bar ko" style="width:100%"></div><span class="cost-bar-val">10</span></div>
+          </div>
+        </div>
+        <div class="cost-row cost-average">
+          <div class="cost-label" data-i18n="game.streetTyper.design.chartAverageLabel">Average<span class="cost-label-ko">(28 cards)</span></div>
+          <div class="cost-bars">
+            <div class="cost-bar-track"><div class="cost-bar" style="width:54.3%"></div><span class="cost-bar-val">5.43</span></div>
+            <div class="cost-bar-track"><div class="cost-bar ko" style="width:56.1%"></div><span class="cost-bar-val">5.61</span></div>
+          </div>
+        </div>
+      </div>
+
+      <details class="cost-details">
+        <summary data-i18n="game.streetTyper.design.detailsSummary">See the full 28-card list →</summary>
+        <div class="cost-table-wrap">
+          <table class="cost-table">
+            <thead>
+              <tr>
+                <th data-i18n="game.streetTyper.design.tableHeaderEn">Card (EN)</th>
+                <th data-i18n="game.streetTyper.design.tableHeaderKeystrokes">Keystrokes</th>
+                <th data-i18n="game.streetTyper.design.tableHeaderKo">Card (KO)</th>
+                <th data-i18n="game.streetTyper.design.tableHeaderTaps">Taps</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Ice</td><td>3</td><td>아이스</td><td>6</td></tr>
+              <tr><td>Jab</td><td>3</td><td>잽</td><td>3</td></tr>
+              <tr><td>Fire</td><td>4</td><td>파이어</td><td>6</td></tr>
+              <tr><td>Hook</td><td>4</td><td>훅</td><td>3</td></tr>
+              <tr><td>Knee</td><td>4</td><td>니킥</td><td>5</td></tr>
+              <tr><td>Chop</td><td>4</td><td>촙</td><td>3</td></tr>
+              <tr><td>Kick</td><td>4</td><td>킥</td><td>3</td></tr>
+              <tr><td>Hyper</td><td>5</td><td>하이퍼</td><td>6</td></tr>
+              <tr><td>Super</td><td>5</td><td>슈퍼</td><td>4</td></tr>
+              <tr><td>Ultra</td><td>5</td><td>울트라</td><td>7</td></tr>
+              <tr><td>Power</td><td>5</td><td>파워</td><td>5</td></tr>
+              <tr><td>Quick</td><td>5</td><td>퀵</td><td>4</td></tr>
+              <tr><td>Lucky</td><td>5</td><td>럭키</td><td>5</td></tr>
+              <tr><td>Devil</td><td>5</td><td>데빌</td><td>5</td></tr>
+              <tr><td>Drain</td><td>5</td><td>드레인</td><td>7</td></tr>
+              <tr><td>Smart</td><td>5</td><td>스마트</td><td>6</td></tr>
+              <tr><td>Guard</td><td>5</td><td>가드</td><td>4</td></tr>
+              <tr><td>Punch</td><td>5</td><td>펀치</td><td>5</td></tr>
+              <tr><td>Double</td><td>6</td><td>더블</td><td>5</td></tr>
+              <tr><td>Triple</td><td>6</td><td>트리플</td><td>7</td></tr>
+              <tr><td>Awesome</td><td>7</td><td>어썸</td><td>6</td></tr>
+              <tr><td>Megaton</td><td>7</td><td>메가톤</td><td>7</td></tr>
+              <tr><td>Perfect</td><td>7</td><td>퍼펙트</td><td>7</td></tr>
+              <tr><td>Thunder</td><td>7</td><td>썬더</td><td>6</td></tr>
+              <tr><td>Dempsey</td><td>7</td><td>뎀프시롤</td><td>10</td></tr>
+              <tr><td>Colorful</td><td>8</td><td>컬러풀</td><td>8</td></tr>
+              <tr><td>Uppercut</td><td>8</td><td>어퍼컷</td><td>7</td></tr>
+              <tr><td>Headbutt</td><td>8</td><td>박치기</td><td>7</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <h4 class="feature-heading" data-i18n="game.streetTyper.design.langHeading">Designing for Korean &amp; English</h4>
+      <p class="gallery-caption" data-i18n="game.streetTyper.design.langBody1">Korean input carries real overhead English doesn't &mdash; Hangul is typed as decomposed jamo, and a tensed consonant like ㅆ costs an extra Shift-tap on top of the letter itself (Awesome/어썸's ㅆ is one example). On paper, that should make Korean cards consistently more expensive to type. Across all 28 cards, though, <strong>the two languages average within 0.18 of a keystroke of each other</strong> (5.43 EN vs. 5.61 KO).</p>
+      <p class="gallery-caption" data-i18n="game.streetTyper.design.langBody2">That per-card parity didn't stop me from giving the two languages different clocks: <strong>the turn timer runs 10 seconds in Korean and 15 in every other language</strong>. Latin script reads longer on screen than the keystroke math says, and most players outside Korea come in more used to console than PC keyboard typing &mdash; so I built in that extra 5 seconds myself rather than trust the raw number to feel fair.</p>
+      <p class="gallery-caption" data-i18n="game.streetTyper.design.langBody3">It isn't even everywhere, though. <strong>Dempsey (7 keystrokes) vs. 뎀프시롤 (10 taps)</strong> is the largest gap in the set &mdash; the Korean name kept closer to the full move name, English shortened it.</p>
+
+      <h4 class="feature-heading" data-i18n="game.streetTyper.design.difficultyHeading">Tuning the Difficulty Curve</h4>
+      <p class="gallery-caption" data-i18n="game.streetTyper.design.difficultyCaption">Language wasn't the only axis I balanced. Street Typer ships three difficulty tiers, and every number scales off <strong>one shared step value</strong> instead of three separately-tuned sets, so the curve stays consistent as I adjust it.</p>
+
+      <div class="cost-table-wrap">
+        <table class="cost-table">
+          <thead>
+            <tr>
+              <th data-i18n="game.streetTyper.design.diffColAxis">Axis</th>
+              <th data-i18n="game.streetTyper.design.diffColStep">Per Step</th>
+              <th data-i18n="game.streetTyper.design.diffColValues">Easy / Normal / Hard</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td data-i18n="game.streetTyper.design.diffRowTimer">Turn timer</td><td>3s</td><td>KO 13 / 10 / 7 &middot; other languages 18 / 15 / 12</td></tr>
+            <tr><td data-i18n="game.streetTyper.design.diffRowHP">Enemy HP</td><td>20%</td><td>&times;0.8 / &times;1.0 / &times;1.2</td></tr>
+            <tr><td data-i18n="game.streetTyper.design.diffRowGrowth">Enemy attack/defense growth per stage</td><td>5%</td><td>15% / 20% / 25%</td></tr>
+            <tr><td data-i18n="game.streetTyper.design.diffRowLucky">Lucky base chance</td><td>10pp</td><td>30% / 20% / 10%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="gallery-caption" data-i18n="game.streetTyper.design.timerHistoryNote">The non-Korean base wasn't always 15 seconds. The first version gave every language the same 10 &mdash; English playtesters, including non-Korean-native friends, <strong>couldn't clear a single run on it</strong>. I split the base before layering difficulty on top.</p>
+      <p class="gallery-caption" data-i18n="game.streetTyper.design.difficultyNote">Hard also drops Lucky from the starting deck &mdash; the run has to earn its way back to that card instead of opening with it.</p>
+
+      <p class="design-result" data-i18n="game.streetTyper.design.result">This card system, timer risk, and per-language tuning are the same ones running in the playable build above, and in the version live on Steam.</p>
+    </section>
+
+    <section class="gallery-section" id="gdd">
+      <h3 class="gallery-title" data-i18n="game.streetTyper.design.gddTitle">From the GDD</h3>
+      <p class="gallery-intro" data-i18n="game.streetTyper.design.gddIntro">The card system above started as a word dictionary in the original design document, written before any of the final names or numbers existed. Four entries from that dictionary, unchanged in spirit through to the Steam build:</p>
+
+      <div class="archetype-grid">
+        <div class="archetype-col">
+          <div class="design-card">
+            <h5>Quick <span class="card-name-ko">퀵</span></h5>
+            <p class="card-effect" data-i18n="game.streetTyper.design.gddQuick">Adds 1 second to the timer.</p>
+          </div>
+          <div class="design-card">
+            <h5>Uppercut <span class="card-name-ko">어퍼컷</span></h5>
+            <p class="card-effect" data-i18n="game.streetTyper.design.gddUppercut">Power + 5 damage. Drops the enemy's defense to 0. Cuts 1 second off the timer.</p>
+          </div>
+        </div>
+        <div class="archetype-col">
+          <div class="design-card">
+            <h5>Dempsey Roll <span class="card-name-ko">뎀프시롤</span></h5>
+            <p class="card-effect" data-i18n="game.streetTyper.design.gddDempsey">After Jab, 50% chance to trigger again &mdash; up to 2 to 5 hits in a row. A combo attack.</p>
+          </div>
+          <div class="design-card">
+            <h5>Guard <span class="card-name-ko">가드</span></h5>
+            <p class="card-effect" data-i18n="game.streetTyper.design.gddGuard">Gain defense equal to Power. A defensive move.</p>
+          </div>
+        </div>
+      </div>
+      <p class="design-insight" data-i18n="game.streetTyper.design.gddInsight">Quick and Uppercut's &plusmn;1-second swing shipped untouched. Dempsey Roll and Guard made the final 28-card list too, just renamed (Dempsey Roll &rarr; Dempsey; Guard kept its name).</p>
+
+      <details class="cost-details">
+        <summary data-i18n="game.streetTyper.design.gddListToggle">See the full original word dictionary &rarr;</summary>
+        <div class="cost-table-wrap">
+          <table class="cost-table spell-table">
+            <thead>
+              <tr><th data-i18n="game.streetTyper.design.gddColWord">Word</th><th data-i18n="game.streetTyper.design.gddColEffect">GDD effect</th></tr>
+            </thead>
+            <tbody>
+              <tr class="table-subhead"><td colspan="2" data-i18n="game.streetTyper.design.gddGroupModifiers">Modifiers (stat amplifiers)</td></tr>
+              <tr><td>Super <span class="card-name-ko">슈퍼</span></td><td>Attack/defense value +1</td></tr>
+              <tr><td>Ultra <span class="card-name-ko">울트라</span></td><td>Attack/defense value +2</td></tr>
+              <tr><td>Hyper <span class="card-name-ko">하이퍼</span></td><td>Attack/defense value +3</td></tr>
+              <tr><td>Megaton <span class="card-name-ko">메가톤</span></td><td>Attack/defense value +4</td></tr>
+              <tr><td>Power <span class="card-name-ko">파워</span></td><td>+1 to the effect of the next value-boosting word (e.g. Power + Super = +2)</td></tr>
+              <tr><td>Awesome <span class="card-name-ko">어썸</span></td><td>Attack/defense value +n, where n = times 'Awesome' has succeeded this run</td></tr>
+              <tr><td>Quick <span class="card-name-ko">퀵</span></td><td>Adds 1 second to the timer</td></tr>
+              <tr><td>Lucky <span class="card-name-ko">럭키</span></td><td>Bonus reward if this word is part of the attack that defeats an enemy</td></tr>
+              <tr class="table-subhead"><td colspan="2" data-i18n="game.streetTyper.design.gddGroupAttributes">Attributes &amp; special effects</td></tr>
+              <tr><td>Fire <span class="card-name-ko">파이어</span></td><td>20% chance to inflict Burn</td></tr>
+              <tr><td>Thunder <span class="card-name-ko">썬더</span></td><td>20% chance to inflict Paralysis</td></tr>
+              <tr><td>Ice <span class="card-name-ko">아이스</span></td><td>20% chance to inflict Freeze</td></tr>
+              <tr><td>Colorful <span class="card-name-ko">컬러풀</span></td><td>10% chance to inflict all three status effects (Burn &gt; Paralysis &gt; Freeze order)</td></tr>
+              <tr><td>Drain <span class="card-name-ko">드레인</span></td><td>Heal 10% of the damage dealt or defense gained</td></tr>
+              <tr><td>Devil <span class="card-name-ko">데빌</span></td><td>Reduce incoming enemy damage by 25%</td></tr>
+              <tr><td>Smart <span class="card-name-ko">스마트</span></td><td>50% chance to double final damage</td></tr>
+              <tr><td>Double <span class="card-name-ko">더블</span></td><td>Executes the completed action twice</td></tr>
+              <tr><td>Triple <span class="card-name-ko">트리플</span></td><td>Executes the completed action three times</td></tr>
+              <tr class="table-subhead"><td colspan="2" data-i18n="game.streetTyper.design.gddGroupActions">Actions (attack/defense)</td></tr>
+              <tr><td>Punch <span class="card-name-ko">펀치</span></td><td>Power + 3 damage &mdash; the standard attack</td></tr>
+              <tr><td>Jab <span class="card-name-ko">잽</span></td><td>Damage equal to Power. Adds 1 second to the timer</td></tr>
+              <tr><td>Hook <span class="card-name-ko">훅</span></td><td>Power + 5 damage. Cuts 1 second off the timer</td></tr>
+              <tr><td>Uppercut <span class="card-name-ko">어퍼컷</span></td><td>Power + 5 damage, drops enemy defense to 0. Cuts 1 second off the timer</td></tr>
+              <tr><td>Kick <span class="card-name-ko">킥</span></td><td>Ignores enemy defense, damage equal to Power &mdash; a piercing attack</td></tr>
+              <tr><td>Dempsey Roll <span class="card-name-ko">뎀프시롤</span></td><td>After Jab, 50% chance to trigger again (up to 2&ndash;5 hits) &mdash; a combo attack</td></tr>
+              <tr><td>Guard <span class="card-name-ko">가드</span></td><td>Gain defense equal to Power &mdash; a defensive move</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <div class="shot-grid gdd-capture">
+        <figure class="shot-card">
+          <img src="../assets/streettyper-gdd/word-dictionary-1.png" alt="Street Typer GDD, section 4.1: modifiers" loading="lazy">
+          <figcaption class="shot-caption" data-i18n="game.streetTyper.design.gddCaptionLabel1">Section 4.1 (modifiers), original design document, in the original Korean.</figcaption>
+        </figure>
+        <figure class="shot-card">
+          <img src="../assets/streettyper-gdd/word-dictionary-2.png" alt="Street Typer GDD, sections 4.2 and 4.3: attributes and actions" loading="lazy">
+          <figcaption class="shot-caption" data-i18n="game.streetTyper.design.gddCaptionLabel2">Sections 4.2&ndash;4.3 (attributes, actions), same document.</figcaption>
+        </figure>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script>
+  const frame = document.getElementById('game-frame');
+  const loading = document.getElementById('loading');
+  function hideLoading() {
+    loading.style.opacity = '0';
+    setTimeout(() => { loading.style.display = 'none'; }, 300);
+  }
+  let frameAlreadyLoaded = false;
+  try { frameAlreadyLoaded = frame.contentDocument && frame.contentDocument.readyState === 'complete'; } catch (e) {}
+  if (frameAlreadyLoaded) {
+    hideLoading();
+  } else {
+    frame.addEventListener('load', () => setTimeout(hideLoading, 400));
+  }
+</script>
+
+</body>
+</html>

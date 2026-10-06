@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Poseidon Skate — Seungju Song</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<script src="../i18n.js" defer></script>
+</head>
+<body>
+
+<header class="player-header">
+  <div class="wrap">
+    <a class="back-link" href="../index.html#projects" data-i18n="game.backToPortfolio">&larr; Back to portfolio</a>
+    <div style="display:flex; align-items:center; gap:14px;">
+      <div class="lang-switch" id="lang-switch">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="ko">한국어</button>
+      </div>
+      <a class="btn btn-outline btn-small" href="poseidon/index.html" target="_blank" rel="noopener" data-i18n="game.openNewTab">Open in new tab ↗</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap player-stage">
+    <div class="stage-frame" id="stage">
+      <div class="stage-loading" id="loading">
+        <div class="spinner"></div>
+        <span data-i18n="game.loadingUnity">Loading game… (large Unity build, may take a moment)</span>
+      </div>
+      <iframe id="game-frame" src="poseidon/index.html" title="Poseidon Skate" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+    <p class="fullscreen-hint" data-i18n="game.tipUnity">Tip: use the in-game fullscreen button once it loads for the best view.</p>
+
+    <div class="player-info">
+      <div>
+        <h1>Poseidon Skate</h1>
+        <div class="role" data-i18n="game.poseidon.role">Game Designer &amp; Programmer — PASSION DIFF</div>
+        <p data-i18n="game.poseidon.desc">
+          A hyper-casual game about skating across open water and shooting down enemies while waves
+          and waterspouts spawn automatically around you. Landing the <strong>QTE prompts</strong> they trigger
+          temporarily powers up your weapon.
+        </p>
+
+        <h4 class="feature-heading" data-i18n="section.keyFeatures">Key Features</h4>
+        <ul class="feature-list">
+          <li data-i18n="game.poseidon.feature1"><strong>Waves and waterspouts</strong> spawn automatically, reshaping the arena as you play</li>
+          <li data-i18n="game.poseidon.feature2"><strong>Gun-based combat</strong> while skating across open water</li>
+          <li data-i18n="game.poseidon.feature3"><strong>QTE prompts</strong> tied to each wave that temporarily power up your weapon when landed</li>
+          <li data-i18n="game.poseidon.feature4"><strong>Arcade-style combos</strong> &mdash; chain successful tricks for a rising-pitch chime and a crowd cheer</li>
+        </ul>
+
+        <h4 class="feature-heading" data-i18n="section.myRole">My Role</h4>
+        <p class="gallery-intro" data-i18n="game.poseidon.myRoleIntro">Within PASSION DIFF, I owned the enemy and combat systems end to end:</p>
+        <ul class="feature-list">
+          <li data-i18n="game.poseidon.myRole1"><strong>Enemy spawning</strong> &mdash; in waves and continuously across open water, tracking health and damage</li>
+          <li data-i18n="game.poseidon.myRole2"><strong>Auto-targeting combat</strong> &mdash; driving the player's attacks against whatever's in range</li>
+          <li data-i18n="game.poseidon.myRole3"><strong>The tornado trick</strong> &mdash; a second QTE reward with its own scripted spiral-ride animation and launch physics</li>
+          <li data-i18n="game.poseidon.myRole4"><strong>The full audio system</strong>, built from scratch, including a combo chime that climbs in pitch with each trick streak</li>
+        </ul>
+      </div>
+      <div class="info-rail">
+        <div class="info-card">
+          <h4 data-i18n="game.controls">Controls</h4>
+          <ul>
+            <li data-i18n="game.poseidon.control1">Auto-forward movement — you're always skating ahead</li>
+            <li data-i18n="game.poseidon.control2">A / D or ← / → — steer</li>
+            <li data-i18n="game.poseidon.control3">Space — jump</li>
+          </ul>
+        </div>
+        <div class="loop-why-box" id="why">
+          <div class="loop-why-row">
+            <h5 data-i18n="card.label.coreLoop">Core Loop</h5>
+            <p data-i18n="card.poseidon.coreLoop">Skate open water auto-attacking whatever's in range, then catch a wave or tornado and land its QTE for a damage payoff before the next threat surfaces.</p>
+          </div>
+          <div class="loop-why-row">
+            <h5 data-i18n="card.label.why">Why</h5>
+            <p data-i18n="card.poseidon.why">I wanted something hyper-casual &mdash; an endless surfing game where you don't aim, just skate while auto-attacking whatever's near as enemies swarm nonstop, then land a trick within a window to chain into an escalating combo finisher. The tornado leans into that further: a much higher launch than the wave, with no cap on the trick chain.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="gallery-section" id="design">
+      <h3 class="gallery-title" data-i18n="game.poseidon.design.title">Design: Two Power-Ups, One Reflex</h3>
+      <p class="gallery-intro" data-i18n="game.poseidon.design.intro">Wave and tornado are reward triggers, both built around the same one QTE input. The system around that single reflex is where the combat design lives.</p>
+
+      <div class="archetype-grid">
+        <div class="archetype-col">
+          <h5 class="archetype-label" data-i18n="game.poseidon.design.hazardLabel">The Reward</h5>
+          <div class="design-card">
+            <h5 data-i18n="game.poseidon.design.riskChoiceTitle">Always a Reward</h5>
+            <p class="card-effect" data-i18n="game.poseidon.design.riskChoiceEffect">Wave and tornado can't hurt you &mdash; you're invincible through the whole trick, even if you whiff it, like Mario's &#63; block.</p>
+            <p class="card-intent" data-i18n="game.poseidon.design.riskChoiceIntent">I wanted hitting one to feel satisfying &mdash; so the tornado's own QTE is tuned even easier despite its bigger payout.</p>
+          </div>
+          <div class="design-card">
+            <h5 data-i18n="game.poseidon.design.autoCombatTitle">Auto-Combat Keeps Hands on Steering</h5>
+            <p class="card-effect" data-i18n="game.poseidon.design.autoCombatEffect">Combat has no aim or fire button &mdash; your weapon auto-attacks whatever's in range while your hands stay on steering and jump.</p>
+            <p class="card-intent" data-i18n="game.poseidon.design.autoCombatIntent">Keeps the whole game down to two active inputs, with the QTE as the one moment that asks for more.</p>
+          </div>
+        </div>
+        <div class="archetype-col">
+          <h5 class="archetype-label" data-i18n="game.poseidon.design.comboLabel">The Combo</h5>
+          <div class="design-card">
+            <h5 data-i18n="game.poseidon.design.endsCleanTitle">Landing Fires Off the Combo</h5>
+            <p class="card-effect" data-i18n="game.poseidon.design.endsCleanEffect">Landing cashes in everything you've built &mdash; the streak converts straight into the payoff. A mid-air mistake resets it too, but earns nothing.</p>
+            <p class="card-intent" data-i18n="game.poseidon.design.endsCleanIntent">The risk in the system is getting caught mid-chain, not finishing one.</p>
+          </div>
+          <div class="design-card">
+            <h5 data-i18n="game.poseidon.design.spiralFixTitle">Fixing a Launch That Depended on Luck</h5>
+            <p class="card-effect" data-i18n="game.poseidon.design.spiralFixEffect">The tornado's first launch was a single physics impulse, and a head-on hit resolved almost flat &mdash; so most launches barely went anywhere.</p>
+            <p class="card-intent" data-i18n="game.poseidon.design.spiralFixIntent">A scripted spiral ride now carries the player up before the real launch, so the trick feels the same no matter the hit angle.</p>
+          </div>
+        </div>
+      </div>
+
+      <h4 class="feature-heading" data-i18n="game.poseidon.design.compareHeading">Wave vs. Tornado</h4>
+      <div class="cost-table-wrap">
+        <table class="cost-table">
+          <thead>
+            <tr><th></th><th data-i18n="game.poseidon.design.compareColWave">Wave</th><th data-i18n="game.poseidon.design.compareColTornado">Tornado</th></tr>
+          </thead>
+          <tbody>
+            <tr><td data-i18n="game.poseidon.design.compareRowHeight">Launch height</td><td data-i18n="game.poseidon.design.compareWaveHeight">Baseline</td><td data-i18n="game.poseidon.design.compareTornadoHeight">Much higher</td></tr>
+            <tr><td data-i18n="game.poseidon.design.compareRowChain">Trick chain</td><td data-i18n="game.poseidon.design.compareWaveChain">Capped</td><td data-i18n="game.poseidon.design.compareTornadoChain">Uncapped</td></tr>
+            <tr><td data-i18n="game.poseidon.design.compareRowDifficulty">QTE difficulty</td><td data-i18n="game.poseidon.design.compareWaveDifficulty">Standard</td><td data-i18n="game.poseidon.design.compareTornadoDifficulty">Easier</td></tr>
+            <tr><td data-i18n="game.poseidon.design.compareRowRole">Role in the loop</td><td data-i18n="game.poseidon.design.compareWaveRole">Primary reward, every run</td><td data-i18n="game.poseidon.design.compareTornadoRole">Rarer reward, bigger payout</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="design-insight" data-i18n="game.poseidon.design.insight">Same reflex, an easier QTE &mdash; the tornado trades difficulty for a bigger payout.</p>
+    </section>
+
+    <section class="gallery-section" id="gdd">
+      <h3 class="gallery-title" data-i18n="game.poseidon.gdd.title">From the GDD: QTE Weapon Buff System</h3>
+      <p class="gallery-intro" data-i18n="game.poseidon.gdd.intro">Unlike the jam game, this one has a real design doc &mdash; <strong>"QTE Weapon Buff System,"</strong> written under the project's internal title, <em>Trident Skater</em>. The numbers below are straight out of it.</p>
+
+      <h4 class="feature-heading" data-i18n="game.poseidon.gdd.setsHeading">Four Sets, Shrinking Windows</h4>
+      <p class="gallery-caption" data-i18n="game.poseidon.gdd.setsCaption">A trick chain is up to four QTE sets back to back. Each set adds four more directional inputs on top of the last &mdash; while <strong>the time allowed to land them keeps shrinking</strong>.</p>
+      <div class="cost-table-wrap">
+        <table class="cost-table">
+          <thead>
+            <tr>
+              <th data-i18n="game.poseidon.gdd.colSet">Set</th>
+              <th data-i18n="game.poseidon.gdd.colInputs">Inputs</th>
+              <th data-i18n="game.poseidon.gdd.colBaseTime">Base time</th>
+              <th data-i18n="game.poseidon.gdd.colBonusTime">Chained-jump bonus</th>
+              <th data-i18n="game.poseidon.gdd.colGrade">Grade</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td data-i18n="game.poseidon.gdd.set1">Set 1</td><td>4</td><td>2.5s</td><td>5.0s</td><td>OK</td></tr>
+            <tr><td data-i18n="game.poseidon.gdd.set2">Set 2</td><td>8</td><td>2.0s</td><td>4.0s</td><td>Good</td></tr>
+            <tr><td data-i18n="game.poseidon.gdd.set3">Set 3</td><td>12</td><td>1.5s</td><td>3.0s</td><td>Nice</td></tr>
+            <tr><td data-i18n="game.poseidon.gdd.set4">Set 4</td><td>16</td><td>1.0s</td><td>2.0s</td><td>Excellent</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="gallery-caption" data-i18n="game.poseidon.gdd.setsNote">Chaining a manual jump the instant you exit a big wave or finish a rail/half-pipe/stairs <strong>doubles that set's time limit</strong> and launches you higher &mdash; the design's one comeback mechanic for a set that's about to time out.</p>
+
+      <h4 class="feature-heading" data-i18n="game.poseidon.gdd.landingHeading">One Landing, Two Judgments</h4>
+      <p class="gallery-caption" data-i18n="game.poseidon.gdd.landingCaption">Landing draws a shadow decal where you're about to come down, with a tiny center dot inside it. The <strong>shadow's full radius</strong> deals AoE damage and knockback; anything caught exactly on that <strong>center dot dies instantly</strong>, regardless of HP.</p>
+    </section>
+
+    <section class="gallery-section" id="behind-the-scenes">
+      <h3 class="gallery-title" data-i18n="game.poseidon.gallery.title">Behind the Scenes</h3>
+      <p class="gallery-intro" data-i18n="game.poseidon.gallery.intro">Two pieces of the real C# implementation behind the tornado trick and the combo chime described above.</p>
+
+      <div class="tool-card">
+        <h5>Movement.cs</h5>
+        <p data-i18n="game.poseidon.gallery.tornadoDesc">The scripted spiral ride mentioned above. The original tornado launch was a single physics impulse — PhysX resolves a head-on hit almost entirely horizontally, so it barely launched at all. This rides the player up the tornado's surface on a <strong>kinematic helix</strong> instead (one ease-in animation curve drives the turn rate and climb rate together) before handing off to the actual launch, so it no longer depends on the angle of the hit.</p>
+        <div class="code-snippet">
+          <div class="code-label">Movement.cs</div>
+          <pre><code>IEnumerator RideTornadoSpiral(TornadoGenerator tornado)
+{
+    _ridingTornadoSpiral = true;
+    _rb.isKinematic = true;
+    VisualOverrideActive = true;
+
+    // ...
+
+    float duration = Mathf.Max(_tornadoSpiralDuration, 0.0001f);
+    float elapsed = 0f;
+    int revolutionsPlayed = 0;
+
+    while (elapsed &lt; duration)
+    {
+        elapsed += Time.deltaTime;
+        float t = _tornadoSpiralCurve.Evaluate(Mathf.Clamp01(elapsed / duration));
+
+        // _tornadoSpiralCurve eases in, so revolutions complete faster near the end - counting whole
+        // revolutions off t (rather than a fixed timer) keeps the whoosh in sync with that.
+        int revolutionsSoFar = Mathf.FloorToInt(Mathf.Abs(_tornadoSpiralRevolutions) * t);
+        if (revolutionsSoFar > revolutionsPlayed)
+        {
+            revolutionsPlayed = revolutionsSoFar;
+            AudioManager.Instance?.PlayTornadoWhoosh();
+        }
+
+        float angleDeg = startAngle + 360f * _tornadoSpiralRevolutions * t;
+        float angleRad = angleDeg * Mathf.Deg2Rad;
+        float radius = Mathf.Lerp(startRadius, endRadius, t);
+        float height = Mathf.Lerp(startHeight, targetHeight, t);
+
+        Vector3 nextPos = axisCenter + new Vector3(Mathf.Cos(angleRad) * radius, height, Mathf.Sin(angleRad) * radius);
+
+        _rb.MovePosition(nextPos);
+        yield return null;
+    }
+
+    _rb.isKinematic = false;
+    VisualOverrideActive = false;
+
+    LaunchTornado();
+    _ridingTornadoSpiral = false;
+}</code></pre>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <h5>AudioManager.cs</h5>
+        <p data-i18n="game.poseidon.gallery.comboDesc">The rising-pitch combo chime mentioned above. Every consecutive trick success reuses the same clip pitched one step higher than the last, so a clean streak audibly climbs &mdash; <strong>a mistake breaks the chain, not landing</strong>, so a combo can span multiple jumps in a row.</p>
+        <div class="code-snippet">
+          <div class="code-label">AudioManager.cs</div>
+          <pre><code>// Rising-pitch combo chime: every consecutive trick success reuses the same clip but one
+// pitch step higher than the last, so a chain of successes audibly climbs instead of just repeating
+// - a mistake (see HandleTrickMistake) is what breaks the chain, not landing, so combos can span
+// multiple jumps as long as the player keeps landing tricks clean.
+public void PlayTrickSuccessChime()
+{
+    if (_trickSuccessClip == null || _comboSource == null) return;
+    _comboSource.pitch = Mathf.Min(1f + _comboStreak * _comboPitchStep, _comboPitchMax);
+    _comboSource.PlayOneShot(_trickSuccessClip);
+    _comboStreak++;
+}
+
+public void ResetTrickCombo()
+{
+    _comboStreak = 0;
+}
+
+// Called on landing (see Movement.IsGrounded) rather than folded into ResetTrickCombo - a mid-air
+// mistake also resets the streak, and that's a failure, not something to cheer for.
+public void OnPlayerLanded()
+{
+    if (_comboStreak >= _bigComboThreshold) PlaySfx(_bigComboCheerClip);
+    ResetTrickCombo();
+}</code></pre>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script>
+  const frame = document.getElementById('game-frame');
+  const loading = document.getElementById('loading');
+  function hideLoading() {
+    loading.style.opacity = '0';
+    setTimeout(() => { loading.style.display = 'none'; }, 300);
+  }
+  let frameAlreadyLoaded = false;
+  try { frameAlreadyLoaded = frame.contentDocument && frame.contentDocument.readyState === 'complete'; } catch (e) {}
+  if (frameAlreadyLoaded) {
+    hideLoading();
+  } else {
+    frame.addEventListener('load', () => setTimeout(hideLoading, 400));
+  }
+</script>
+
+</body>
+</html>

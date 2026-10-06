@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="meta.title">Seungju Song — Systems Designer</title>
+<meta name="description" data-i18n="meta.description" content="Portfolio of Seungju Song, a game &amp; systems designer at DigiPen Institute of Technology &mdash; tactics, combat, and the systems that tie them together, designed and shipped. Play Don't Stop the Party, Poseidon Skate, Dragonic Tactics, and Street Typer, right in your browser.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="i18n.js" defer></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top">SEUNG<span>JU</span> SONG<span>.</span></a>
+    <nav class="nav-links">
+      <a href="#projects" data-i18n="nav.projects">Projects</a>
+      <a href="#about" data-i18n="nav.about">About</a>
+      <a href="#experience" data-i18n="nav.experience">Background</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+      <a href="https://github.com/seungju-digipen" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/seungju-song-8673b0381/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-outline btn-small" href="assets/Resume_Seungju_Song.pdf" target="_blank" rel="noopener" data-i18n="nav.resume">Resume</a>
+      <div class="lang-switch" id="lang-switch">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="ko">한국어</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero hero-compact">
+    <div class="wrap">
+      <h1 data-i18n="hero.title">Game &amp; systems designer<br>tactics, combat, and the systems that tie them together.</h1>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="projects.eyebrow">Projects</div>
+        <h2 data-i18n="projects.title">Playable in your browser &mdash; and on Steam</h2>
+        <p data-i18n="projects.intro">Four playable builds, each with its own player page &mdash; one is also live on Steam. Best on desktop Chrome or Edge.</p>
+      </div>
+
+      <div class="projects-grid">
+
+        <article class="card" data-href="games/street-typer.html">
+          <div class="card-media">
+            <span class="card-badge" data-i18n="card.streetTyper.badge">Card System · Live on Steam</span>
+            <img src="assets/covers/street-typer.png" alt="Street Typer key art" data-i18n-alt="card.streetTyper.alt" loading="lazy">
+            <video class="card-attract" muted loop playsinline preload="none" data-src="assets/attract/street-typer.mp4"></video>
+          </div>
+          <div class="card-body">
+            <h3>Street Typer</h3>
+            <p data-i18n="card.streetTyper.desc">"Type &amp; Fight!" &mdash; a deckbuilding typing action roguelite.</p>
+            <div class="tag-list">
+              <span class="tag">Unity</span>
+              <span class="tag">C#</span>
+              <span class="tag">FMOD Audio</span>
+              <span class="tag" data-i18n="tag.cardSystemDesign">Card System Design</span>
+              <span class="tag" data-i18n="tag.levelDesign">Level Design</span>
+              <span class="tag" data-i18n="tag.localization">Localization</span>
+              <span class="tag">MINISONG</span>
+            </div>
+            <div class="card-footer">
+              <a class="btn btn-outline btn-small" href="https://store.steampowered.com/app/5129590/StreetTyper/" target="_blank" rel="noopener" data-i18n="btn.viewOnSteam">View on Steam ↗</a>
+              <a class="btn btn-outline btn-small" href="https://github.com/Seohyeon-Min/StreetTyper" target="_blank" rel="noopener" data-i18n="btn.viewSource">Source ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-href="games/dragonic-tactics.html">
+          <div class="card-media">
+            <span class="card-badge" data-i18n="card.dragonic.badge">Tactical Design</span>
+            <img src="assets/covers/dragonic-tactics.png" alt="Dragonic Tactics title screen" data-i18n-alt="card.dragonic.alt" loading="lazy">
+            <video class="card-attract" muted loop playsinline preload="none" data-src="assets/attract/dragonic-tactics.mp4"></video>
+          </div>
+          <div class="card-body">
+            <h3>Dragonic Tactics</h3>
+            <p data-i18n="card.dragonic.desc">A grid-based tactics game.</p>
+            <div class="tag-list">
+              <span class="tag">C++</span>
+              <span class="tag">Emscripten</span>
+              <span class="tag">WebAssembly</span>
+              <span class="tag" data-i18n="tag.customEngine">Custom Engine</span>
+              <span class="tag" data-i18n="tag.gameDesign">Game Design</span>
+              <span class="tag" data-i18n="tag.art">Art</span>
+              <span class="tag" data-i18n="tag.levelDesign">Level Design</span>
+              <span class="tag" data-i18n="tag.aiBehavior">AI Behavior</span>
+              <span class="tag">CodePistols</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-href="games/dont-stop-the-party.html">
+          <div class="card-media">
+            <span class="card-badge" data-i18n="card.dstp.badge">Solo Build · Game Jam</span>
+            <img src="assets/covers/dont-stop-the-party.png" alt="Don't Stop the Party cover art" data-i18n-alt="card.dstp.alt" loading="lazy">
+            <video class="card-attract" muted loop playsinline preload="none" data-src="assets/attract/dont-stop-the-party.mp4"></video>
+          </div>
+          <div class="card-body">
+            <h3>Don't Stop the Party</h3>
+            <p data-i18n="card.dstp.desc">A hyper-casual one-shot shooting arcade game.</p>
+            <div class="tag-list">
+              <span class="tag">C++</span>
+              <span class="tag">Raylib</span>
+              <span class="tag" data-i18n="tag.customEngine">Custom Engine</span>
+              <span class="tag" data-i18n="tag.gameDesign">Game Design</span>
+              <span class="tag" data-i18n="tag.art">Art</span>
+              <span class="tag" data-i18n="tag.soundDesign">Sound Design</span>
+              <span class="tag" data-i18n="tag.soloDev">Solo Dev</span>
+            </div>
+            <div class="card-footer">
+              <a class="btn btn-outline btn-small" href="https://github.com/seungju-digipen/Dont-stop-the-party" target="_blank" rel="noopener" data-i18n="btn.viewSource">Source ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-href="games/poseidon.html">
+          <div class="card-media">
+            <span class="card-badge">Unity WebGL</span>
+            <img src="assets/covers/poseidon.png" alt="Poseidon Skate gameplay screenshot" data-i18n-alt="card.poseidon.alt" loading="lazy">
+            <video class="card-attract" muted loop playsinline preload="none" data-src="assets/attract/poseidon.mp4"></video>
+          </div>
+          <div class="card-body">
+            <h3>Poseidon Skate</h3>
+            <p data-i18n="card.poseidon.desc">A hyper-casual skating shooter.</p>
+            <div class="tag-list">
+              <span class="tag">Unity</span>
+              <span class="tag">C#</span>
+              <span class="tag">WebGL</span>
+              <span class="tag" data-i18n="tag.gameDesign">Game Design</span>
+              <span class="tag" data-i18n="tag.combatDesign">Combat Design</span>
+              <span class="tag" data-i18n="tag.soundDesign">Sound Design</span>
+              <span class="tag">PASSION DIFF</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="about.eyebrow">About</div>
+        <h2 data-i18n="about.title">Who I am</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-photo-wrap">
+          <img src="assets/me.jpg" alt="Seungju Song" class="about-photo">
+        </div>
+        <div class="about-columns">
+          <div class="skill-groups">
+            <div class="skill-group">
+              <h4 data-i18n="about.languages">Languages</h4>
+              <div class="tag-list">
+                <span class="tag">C++</span>
+                <span class="tag">C#</span>
+                <span class="tag">C</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h4 data-i18n="about.enginesApis">Engines &amp; APIs</h4>
+              <div class="tag-list">
+                <span class="tag">Unity</span>
+                <span class="tag">OpenGL</span>
+                <span class="tag">Raylib</span>
+                <span class="tag" data-i18n="tag.vulkanLearning">Vulkan (learning)</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h4 data-i18n="about.toolsWorkflow">Tools &amp; Workflow</h4>
+              <div class="tag-list">
+                <span class="tag">Perforce (P4V)</span>
+                <span class="tag">Git</span>
+                <span class="tag">Visual Studio</span>
+                <span class="tag">Jira</span>
+                <span class="tag">Notion</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h4 data-i18n="about.coreCompetencies">Strengths</h4>
+              <div class="tag-list">
+                <span class="tag" data-i18n="tag.gameSystemDesign">Game &amp; System Design</span>
+                <span class="tag" data-i18n="tag.levelBalancing">Level Balancing</span>
+              </div>
+            </div>
+          </div>
+          <div class="about-text">
+            <p data-i18n="about.p1">
+              I'm studying Computer Science (Real-Time Interactive Simulation) at DigiPen Institute of
+              Technology. I came up through DigiPen's Game Engineering program at Keimyung University in
+              Daegu, South Korea, and I'm now on DigiPen's Redmond campus.
+            </p>
+            <p data-i18n="about.p2">
+              I design before I code. In Dragonic Tactics, I drew per-class decision flowcharts before
+              implementing any enemy AI; in Street Typer, I formed the team myself, wrote the GDD, and
+              balanced the card system and difficulty. In a one-week game jam, I handled design,
+              programming, art, and sound alone.
+            </p>
+            <p data-i18n="about.p3">
+              I also design systems beyond the usual combat/AI/card scope &mdash; UI layout, level
+              progression, difficulty tuning &mdash; wherever the project needs it.
+            </p>
+            <p data-i18n="about.p4">
+              As a GAM150 TA, I helped students scope their projects down to something manageable. Before
+              enrolling, I served two years in the Republic of Korea Air Force as an aircraft armament
+              maintenance specialist.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonial">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="testimonial.eyebrow">In Their Words</div>
+      </div>
+      <div class="testimonial-card">
+        <blockquote>"He demonstrated a rare ability to balance his creative ambitions with the group's actual
+          capabilities and pace &mdash; becoming highly skilled at managing a project's tempo, keeping it
+          on schedule while preventing scope creep."</blockquote>
+        <cite>
+          <span class="testimonial-name">Jonathan Holmes</span>
+          <span class="testimonial-role" data-i18n="testimonial.role">Instructor, DigiPen Institute of Technology</span>
+        </cite>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="experience.eyebrow">Background</div>
+        <h2 data-i18n="experience.title">Education, Teaching &amp; Service</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="meta" data-i18n="tl.digipen.meta">Expected 2028 · Redmond, WA</div>
+          <h4>DigiPen Institute of Technology</h4>
+          <p data-i18n="tl.digipen.desc">B.S. Computer Science in Real-Time Interactive Simulation</p>
+        </div>
+        <div class="timeline-item">
+          <div class="meta" data-i18n="tl.ta.meta">Spring 2026 · Keimyung University, Daegu, South Korea</div>
+          <h4 data-i18n="tl.ta.title">Teaching Assistant — GAM150</h4>
+          <p data-i18n="tl.ta.desc">Helped students with game development fundamentals, debugging, and project work.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="meta" data-i18n="tl.airforce.meta">Aug 2022 – May 2024 · Wonju, South Korea</div>
+          <h4 data-i18n="tl.airforce.title">Republic of Korea Air Force — Aircraft Armament Maintenance</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-panel">
+        <h2 data-i18n="contact.title">Open to opportunities</h2>
+        <p data-i18n="contact.intro">Internships, collaborations, game jams &mdash; I'm around for all of it. Email me, or grab the resume below.</p>
+        <div class="contact-actions">
+          <button type="button" class="btn btn-outline" id="copy-email" data-email="justju1616@gmail.com" data-i18n="contact.mailLabel">Mail</button>
+          <a class="btn btn-outline" href="https://github.com/seungju-digipen" target="_blank" rel="noopener">GitHub ↗</a>
+          <a class="btn btn-outline" href="https://www.linkedin.com/in/seungju-song-8673b0381/" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="btn btn-primary" href="assets/Resume_Seungju_Song.pdf" target="_blank" rel="noopener" data-i18n="contact.downloadResume">Download Resume</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <div class="footer-left">
+      <span>© 2026 Seungju Song</span>
+      <span>Redmond, WA</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.card').forEach(function (card) {
+    card.addEventListener('click', function (e) {
+      if (e.target.closest('a')) return;
+      var href = card.dataset.href;
+      if (href) window.location.href = href;
+    });
+  });
+</script>
+
+<script>
+  (function () {
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return;
+
+    // Devices without a hover-capable pointer (phones, tablets) never fire
+    // mouseenter, so a recruiter opening the link from LinkedIn or an email
+    // on mobile would only ever see the static cover. IntersectionObserver
+    // plays the clip instead once the card actually scrolls into view.
+    var canHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
+
+    function loadSrc(video) {
+      if (!video.dataset.loaded) {
+        video.src = video.dataset.src;
+        video.dataset.loaded = 'true';
+      }
+    }
+
+    function play(video) {
+      loadSrc(video);
+      video.currentTime = 0;
+      var playPromise = video.play();
+      if (playPromise && playPromise.then) {
+        playPromise.then(function () {
+          video.classList.add('is-visible');
+        }).catch(function () {});
+      }
+    }
+
+    function stop(video) {
+      video.pause();
+      video.classList.remove('is-visible');
+    }
+
+    document.querySelectorAll('.card-attract').forEach(function (video) {
+      var card = video.closest('.card');
+      if (!card || !video.dataset.src) return;
+
+      video.addEventListener('error', function () {
+        video.classList.remove('is-visible');
+      });
+
+      if (canHover) {
+        card.addEventListener('mouseenter', function () { play(video); });
+        card.addEventListener('mouseleave', function () { stop(video); });
+      } else if (window.IntersectionObserver) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              play(video);
+            } else {
+              stop(video);
+            }
+          });
+        }, { threshold: 0.5 });
+        observer.observe(card);
+      }
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    var btn = document.getElementById('copy-email');
+    if (!btn) return;
+
+    var copiedText = { en: 'Copied!', ko: '복사됨!' };
+
+    function fallbackCopy(text) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+
+    btn.addEventListener('click', function () {
+      var email = btn.dataset.email;
+      var original = btn.textContent;
+      var lang = document.documentElement.lang === 'ko' ? 'ko' : 'en';
+
+      function showCopied() {
+        btn.textContent = copiedText[lang];
+        btn.classList.add('is-copied');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('is-copied');
+        }, 1600);
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(showCopied, function () {
+          fallbackCopy(email);
+          showCopied();
+        });
+      } else {
+        fallbackCopy(email);
+        showCopied();
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

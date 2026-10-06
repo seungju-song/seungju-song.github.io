@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Holo Card Effect (standalone)</title>
+<style>
+  /*
+    Standalone "rare card" holo-foil effect, extracted from
+    seungju-song-portfolio/site/styles.css (.contact-panel).
+
+    What it is:
+      A CSS-only recreation of the shimmering foil look on rare cards in
+      Pokemon TCG Pocket — a soft rainbow prism band plus a brighter white
+      glare streak, both sweeping diagonally back and forth across a panel.
+
+    How it works:
+      - Two pseudo-elements (::before = color prism, ::after = white glare)
+        are absolutely positioned over the card, each holding a diagonal
+        linear-gradient band that's mostly transparent except for a thin
+        colored/bright stripe in the middle.
+      - Both are animated with translateX to sweep left-right.
+      - mix-blend-mode (screen / overlay) makes the stripes blend with the
+        card's own background instead of just painting flat color on top,
+        which is what gives it the "catching the light" look.
+      - isolation: isolate on the card creates a new stacking context, so
+        the blend modes only affect pixels inside the card, not the page
+        behind it.
+      - The card's real content (heading, text, buttons) is lifted above
+        the pseudo-elements with z-index, and overflow: hidden on the card
+        clips the (intentionally oversized, inset: -30%) gradient layers to
+        the card's rounded corners.
+
+    No extra HTML is required beyond the card element itself — the shine
+    layers are pure generated content (content: "").
+
+    To reuse elsewhere: apply class="holo-card" to any block-level element
+    that has its own background/border/border-radius. Tweak the gradient
+    stop colors, the animation duration, or the ::after opacity to adjust
+    how strong/subtle the shine reads.
+  */
+
+  :root {
+    --bg: #1b2a4d;
+    --bg-card: #30497d;
+    --border: #455b8a;
+    --text: #e8eaf0;
+    --text-muted: #a9b6d4;
+    --accent: #f2842f;
+    --radius: 14px;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 40px 20px;
+  }
+
+  .demo-wrap {
+    width: 100%;
+    max-width: 640px;
+  }
+
+  .demo-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  /* ===================== THE EFFECT ===================== */
+
+  .holo-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(242, 132, 47, 0.10), rgba(69, 91, 138, 0.14));
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 48px;
+    text-align: center;
+  }
+
+  .holo-card::before,
+  .holo-card::after {
+    content: "";
+    position: absolute;
+    inset: -30%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Rainbow prism band */
+  .holo-card::before {
+    background: linear-gradient(
+      115deg,
+      transparent 28%,
+      rgba(255, 170, 60, 0.4) 40%,
+      rgba(255, 255, 255, 0.55) 46%,
+      rgba(120, 210, 255, 0.4) 50%,
+      rgba(255, 120, 210, 0.4) 55%,
+      rgba(160, 255, 190, 0.35) 60%,
+      transparent 72%
+    );
+    mix-blend-mode: screen;
+    animation: holo-sweep 5.5s ease-in-out infinite;
+  }
+
+  /* Brighter, narrower glare streak riding just behind the prism band */
+  .holo-card::after {
+    background: linear-gradient(
+      115deg,
+      transparent 46%,
+      rgba(255, 255, 255, 0.5) 49.5%,
+      transparent 53%
+    );
+    mix-blend-mode: overlay;
+    animation: holo-sweep 5.5s ease-in-out infinite;
+    animation-delay: 0.15s;
+  }
+
+  @keyframes holo-sweep {
+    0%, 100% { transform: translateX(-35%); }
+    50% { transform: translateX(35%); }
+  }
+
+  /* Keep real content above the shine layers */
+  .holo-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .holo-card::before,
+    .holo-card::after {
+      animation: none;
+    }
+  }
+
+  /* ===================== /THE EFFECT ===================== */
+
+  .holo-card h2 { margin: 0 0 10px; font-size: 1.5rem; }
+  .holo-card p { color: var(--text-muted); margin: 0 0 24px; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg);
+  }
+</style>
+</head>
+<body>
+
+  <div class="demo-wrap">
+    <div class="demo-label">holo-card demo — edit the CSS above to tweak it</div>
+
+    <div class="holo-card">
+      <h2>Open to opportunities</h2>
+      <p>This panel has class="holo-card" — that's the whole effect.</p>
+      <a class="btn btn-primary" href="#">Download Resume</a>
+      <a class="btn" href="#">Mail</a>
+    </div>
+  </div>
+
+</body>
+</html>

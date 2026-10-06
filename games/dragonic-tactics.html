@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dragonic Tactics — Seungju Song</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<script src="../i18n.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+
+<header class="player-header">
+  <div class="wrap">
+    <a class="back-link" href="../index.html#projects" data-i18n="game.backToPortfolio">&larr; Back to portfolio</a>
+    <div style="display:flex; align-items:center; gap:14px;">
+      <div class="lang-switch" id="lang-switch">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="ko">한국어</button>
+      </div>
+      <a class="btn btn-outline btn-small" href="dragonic-tactics/index.html" target="_blank" rel="noopener" data-i18n="game.openNewTab">Open in new tab ↗</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap player-stage">
+    <div class="stage-frame" id="stage">
+      <div class="stage-loading" id="loading">
+        <div class="spinner"></div>
+        <span data-i18n="game.loading">Loading game…</span>
+      </div>
+      <iframe id="game-frame" src="dragonic-tactics/index.html" title="Dragonic Tactics" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+    <div class="fullscreen-action">
+      <button type="button" class="btn btn-outline btn-small" id="fullscreen-btn" data-i18n="game.fullscreenBtn">Fullscreen ⛶</button>
+    </div>
+
+    <div class="player-info">
+      <div>
+        <h1>Dragonic Tactics</h1>
+        <div class="role" data-i18n="game.dragonic.role">Game Designer &amp; Artist — CodePistols</div>
+        <p data-i18n="game.dragonic.desc">
+          A tactical game with maps and characters I designed by hand. Enemy behavior and combat
+          decisions were mapped out in <strong>detailed AI flowcharts</strong> before I wrote a line of code.
+        </p>
+
+        <h4 class="feature-heading" data-i18n="section.keyFeatures">Key Features</h4>
+        <ul class="feature-list">
+          <li data-i18n="game.dragonic.feature1"><strong>Hand-designed maps and roster</strong> for grid-based tactical combat</li>
+          <li data-i18n="game.dragonic.feature2"><strong>Enemy AI authored as flowcharts</strong> before a single line of code was written</li>
+          <li data-i18n="game.dragonic.feature3"><strong>Reshapeable terrain</strong> you can change mid-battle to shift the tactical situation</li>
+        </ul>
+
+        <h4 class="feature-heading" data-i18n="section.myRole">My Role</h4>
+        <p class="gallery-intro" data-i18n="game.dragonic.myRoleIntro">As part of my team, CodePistols:</p>
+        <ul class="feature-list">
+          <li data-i18n="game.dragonic.myRole1"><strong>Core system mechanics</strong>, map layouts, and character concepts</li>
+          <li data-i18n="game.dragonic.myRole2"><strong>AI flowcharts</strong> defining enemy behavior and decision-making</li>
+        </ul>
+      </div>
+      <div class="info-rail">
+        <div class="info-card">
+          <h4 data-i18n="game.controls">Controls</h4>
+          <ul>
+            <li data-i18n="game.dragonic.control1">Mouse — select, move, and attack (the primary control scheme)</li>
+            <li data-i18n="game.dragonic.control2">Menus &amp; settings: WASD / arrow keys to navigate, Enter to confirm (mouse also works)</li>
+          </ul>
+        </div>
+        <div class="loop-why-box" id="why">
+          <div class="loop-why-row">
+            <h5 data-i18n="card.label.coreLoop">Core Loop</h5>
+            <p data-i18n="card.dragonic.coreLoop">Position your squad on the grid, trade attacks with enemies whose decisions follow AI flowcharts I wrote in advance, and reshape terrain mid-fight to open or close off lanes.</p>
+          </div>
+          <div class="loop-why-row">
+            <h5 data-i18n="card.label.why">Why</h5>
+            <p data-i18n="card.dragonic.why">I wanted a tactics game where the terrain itself is part of the puzzle &mdash; reshaping the field mid-fight matters as much as your units' stats, so a strong opening position doesn't just stay strong all game.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="gallery-section" id="design">
+      <h3 class="gallery-title" data-i18n="game.dragonic.gallery.designTitle">Design</h3>
+      <p class="gallery-intro" data-i18n="game.dragonic.gallery.designIntro">Enemy AI flowcharts and the spell numbers behind them.</p>
+
+      <h4 class="feature-heading" data-i18n="game.dragonic.gallery.aiHeading">Enemy AI Flowcharts</h4>
+      <p class="gallery-caption" data-i18n="game.dragonic.gallery.aiCaption">The actual decision flowcharts I wrote for each class before implementing any AI code. Click a diagram to zoom in.</p>
+      <div class="flowchart-grid">
+        <div class="flowchart-card">
+          <h5>Cleric</h5>
+          <div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start(["Cleric turn start"]) --> Init["Initialize state &lt;br/&gt; (check MP/AP/available slots)"]
+
+    %% [Step 1: guaranteed-kill sequence]
+    Init --> CheckKill{"[Priority 1] Guaranteed kill possible?"}
+    CheckKill -- "Yes" --> Kill_Loop
+
+    subgraph Kill_Loop ["Maximum Firepower Loop"]
+        K_Move{"Adjacent?"} -- No --> K_MP{"MP > 0?"}
+        K_MP -- Yes --> K_DoMove["Move (MP-1)"] --> K_Move
+        K_MP -- No --> Phase_Decision
+
+        K_Move -- Yes --> K_AP{"AP > 0?"}
+        K_AP -- Yes --> K_Slot{"Slot available?"}
+        K_Slot -- No --> K_Norm["Basic attack (AP-1)"] --> K_AP
+        K_AP -- No --> End_K(["End turn"])
+    end
+
+    %% [Step 2: decision point / support-combat switch]
+    CheckKill -- No --> Phase_Decision
+
+    Phase_Decision(("Decision point")) --> HasAP{"AP > 0?"}
+    HasAP -- No --> End(["End turn"])
+
+    %% [Step 3: priority-based action]
+    HasAP -- Yes --> CheckHeal{"[Priority 2] Heal needed?"}
+
+    %% Heal section
+    CheckHeal -- "Yes (HP low)" --> CanHeal{"Slot available?"}
+    CanHeal -- Yes --> HealAct["Cast Heal (AP-1, Slot-1)"] --> Phase_Decision
+    CanHeal -- No --> MeleePhase
+    %% No slot left -> fall back to attacking
+
+    %% Buff/debuff and basic attack section
+    CheckHeal -- No --> CheckRes{"Slots remaining?"}
+
+    %% Only try buff/debuff if slots remain
+    CheckRes -- Yes --> SupportLogic{Buff/debuff needed?}
+    SupportLogic -- Yes --> ExecuteSupport["Cast spell (AP-1, Slot-1)"] --> Phase_Decision
+    SupportLogic -- No --> MeleePhase
+
+    %% No slots left or nothing to do -> melee attack no matter what
+    CheckRes -- No --> MeleePhase
+
+    subgraph MeleePhase ["Basic Attack Process"]
+        M_Adj{"Adjacent to dragon?"} -- No --> M_Move{"MP > 0?"}
+        M_Move -- Yes --> M_DoMove["Move toward dragon (MP-1)"] --> M_Adj
+        M_Move -- No --> Phase_Decision
+
+        M_Adj -- Yes --> M_Atk["Basic attack (AP-1)"] --> Phase_Decision
+    end
+
+    %% [Step 4: wrap-up]
+    Phase_Decision --> HasMP{"No AP left, but &lt;br/&gt; MP remaining?"}
+    HasMP -- Yes --> TacticalMove["Reposition for next turn"] --> End
+    HasMP -- No --> End</pre></div>
+        </div>
+
+        <div class="flowchart-card">
+          <h5>Fighter</h5>
+          <div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start(["Fighter turn start"]) --> InitVars["Initialize state variables: &lt;br/&gt; [HasAttacked = False]"]
+
+    InitVars --> CheckKillDist{"A* pathfind: &lt;br/&gt; reachable this turn?"}
+
+    CheckKillDist -- Yes --> CheckKillHP{"Can guarantee dragon kill? &lt;br/&gt; (sum of available slot damage)"}
+    CheckKillHP -- Yes --> Kill_Loop
+
+    CheckKillDist -- No --> Phase_Decision
+    CheckKillHP -- No --> Phase_Decision
+
+    subgraph Kill_Loop ["Maximum Firepower Loop"]
+        K_Reach{"Adjacent?"} -- No --> K_CanMove{"MP > 0?"}
+        K_CanMove -- Yes --> K_DoMove["Move (MP-1)"] --> K_Reach
+        K_CanMove -- No --> Phase_Decision
+
+        K_Reach -- Yes --> K_AP{"AP > 0?"} -- Yes --> K_BestSlot{"Find best slot &lt;br/&gt; for enemy HP"}
+        K_BestSlot -- "has slot" --> K_Smite["Smite (AP-1) &lt;br/&gt; [upcast to avoid overkill]"] --> K_AP
+        K_BestSlot -- "no slot" --> K_Norm["Basic attack (AP-1)"] --> K_AP
+        K_AP -- No --> End_K(["End turn"])
+    end
+
+    Phase_Decision(("Decision point")) --> CheckAP{"Remaining AP > 0?"}
+    CheckAP -- No --> End(["End turn"])
+
+    CheckAP -- Yes --> CheckReach{"Adjacent to dragon (1 tile)?"}
+
+    CheckReach -- No --> CanMove{"MP > 0 &amp; A* path exists?"}
+    CanMove -- Yes --> Act_Move["Move (MP-1)"] --> Phase_Decision
+
+    CanMove -- No --> CheckFearFar{"Dragon not feared &amp; has level-1 slot &lt;br/&gt; &amp; within fear range?"}
+    CheckFearFar -- Yes --> Act_FearFar["Fearful Cry (AP-1)"] --> End
+    CheckFearFar -- No --> End
+
+    CheckReach -- Yes --> CheckHP{"HP &lt;= 40%?"}
+
+    CheckHP -- Yes --> HasBloodlust{"'Bloodlust' active?"}
+
+    HasBloodlust -- No --> CheckBloodSlot{"Has level-2 slot?"}
+    CheckBloodSlot -- Yes --> Act_Bloodlust["Cast Bloodlust (AP-1) &lt;br/&gt; (lifesteal from next attack)"] --> Phase_Decision
+    CheckBloodSlot -- No --> CheckFearNear{"Dragon not 'feared'?"}
+
+    HasBloodlust -- Yes --> CheckHealSlot{"Has slot for Smite?"}
+    CheckHealSlot -- "has slot" --> Act_HealSmite["Smite (AP-1) &lt;br/&gt; [upcast to maximize lifesteal]"] --> Phase_Decision
+    CheckHealSlot -- "no slot" --> Act_NormalLoop["Basic attack (AP-1) &lt;br/&gt; (heals via Bloodlust)"] --> Phase_Decision
+
+    CheckHP -- No --> CheckBless{"'Bless' active?"}
+
+    CheckBless -- Yes --> HasBurst{"'Frenzy' buff active?"}
+    HasBurst -- No --> CheckBurstAP{"Remaining AP >= 2?"}
+    CheckBurstAP -- Yes --> Act_Burst["Cast Frenzy (AP-1)"] --> Phase_Decision
+    CheckBurstAP -- No --> CheckSmiteSlot
+
+    HasBurst -- Yes --> CheckSmiteSlot
+
+    CheckSmiteSlot{"Has attack slot?"} -- "has slot" --> Act_UpSmite["Smite (AP-1) &lt;br/&gt; [consume highest available level]"] --> Phase_Decision
+    CheckSmiteSlot -- "no slot" --> Act_NormalLoop["Basic attack (AP-1)"] --> Phase_Decision
+
+    CheckBless -- No --> CheckCleric{"Cleric alive?"}
+    CheckCleric -- Yes --> CheckFearNear
+
+    CheckFearNear -- "Yes (not feared)" --> CheckFearSlot{"Has level-1 slot &amp; &lt;br/&gt; within fear range?"}
+    CheckFearSlot -- Yes --> Act_Fear["Fearful Cry (AP-1)"] --> Phase_Decision
+    CheckFearSlot -- No --> Act_NormalLoop
+    CheckFearNear -- "No (already feared)" --> Act_NormalLoop
+
+    CheckCleric -- No --> HasIndBurst{"'Frenzy' active?"}
+    HasIndBurst -- No --> Check2ndSlot{"Has level-2 slot &amp; &lt;br/&gt; AP >= 2?"}
+    Check2ndSlot -- Yes --> Act_IndBurst["Cast Frenzy (AP-1)"] --> Phase_Decision
+    Check2ndSlot -- No --> CheckFearNear
+    HasIndBurst -- Yes --> CheckSmiteSlot</pre></div>
+        </div>
+
+        <div class="flowchart-card">
+          <h5>Rogue</h5>
+          <div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start(["Rogue turn start"]) --> InitVars["Initialize state variables: &lt;br/&gt; [HasAttacked = False]"]
+    InitVars --> CheckKill{"Is a dragon kill lined up? &lt;br/&gt; (stealth 2x &amp; verify A* path)"}
+
+    CheckKill -- Yes --> Kill_Loop
+    subgraph Kill_Loop ["Max-Damage Barrage Loop"]
+        K_Reach{"Adjacent?"} -- No --> K_CanMove{"MP > 0 &amp; &lt;br/&gt; A* path exists?"}
+        K_CanMove -- Yes --> K_DoMove["Move (A*)"] --> K_Reach
+
+        K_CanMove -- No --> Phase_Decision
+
+        K_Reach -- Yes --> K_AP{"AP > 0?"} -- Yes --> K_Cond{"Has level-2 slot?"}
+        K_Cond -- Yes --> K_Weak["Weakpoint Strike (Slot-1)"] --> K_AP
+        K_Cond -- No --> K_Norm["Basic attack"] --> K_AP
+
+        K_AP -- No --> Phase_Decision
+    end
+
+    CheckKill -- No --> HasHasteBuff{"Already 'Haste'd?"}
+
+    HasHasteBuff -- No --> CheckHasteSlot{"Has level-1 slot?"}
+    CheckHasteSlot -- Yes --> IsHasteMeaningful{"Is Haste worth it? &lt;br/&gt; (low MP or spare AP)"}
+
+    IsHasteMeaningful -- Yes --> Act_Haste["Cast Gale Step &lt;br/&gt; (AP-1, AP+1, MP+1)"] --> Phase_Decision
+
+    HasHasteBuff -- Yes --> Phase_Decision
+    CheckHasteSlot -- No --> Phase_Decision
+    IsHasteMeaningful -- No --> Phase_Decision
+
+    Phase_Decision(("Decision point")) --> CheckAP{"Remaining AP > 0?"}
+    CheckAP -- No --> End(["End turn"])
+
+    CheckAP -- Yes --> CheckReach{"Adjacent?"}
+
+    CheckReach -- No --> CanMove{"MP > 0 &amp; &lt;br/&gt; A* path exists?"}
+    CanMove -- Yes --> Act_Move["Move (along A* path)"] --> Phase_Decision
+
+    CanMove -- No --> CheckAttackedFar{"[HasAttacked] == False &lt;br/&gt; &amp; not stealthed?"}
+    CheckAttackedFar -- Yes --> Act_StealthFar["Shadow Hide (AP-1)"] --> End
+    CheckAttackedFar -- No --> End
+
+    CheckReach -- Yes --> CheckStealth_Combat{"Currently stealthed?"}
+
+    CheckStealth_Combat -- Yes --> CheckWeakSlot{"Has level-2 slot?"}
+    CheckWeakSlot -- Yes --> Act_Weak["Weakpoint Strike (2x) &lt;br/&gt; [HasAttacked = True] &lt;br/&gt; [break stealth]"] --> Phase_Decision
+    CheckWeakSlot -- No --> ShouldIBreakStealth{"Worth breaking stealth &lt;br/&gt; with a basic attack?"}
+
+    ShouldIBreakStealth -- Yes --> Act_NormStealth["Basic attack (2x) &lt;br/&gt; [HasAttacked = True] &lt;br/&gt; [break stealth]"] --> Phase_Decision
+    ShouldIBreakStealth -- No --> Repo_Move{"MP > 0?"}
+    Repo_Move -- Yes --> Act_Repo["Reposition move"] --> Repo_Move
+    Repo_Move -- No --> End_Stealth(["End turn (stay stealthed)"])
+
+    CheckStealth_Combat -- No --> CheckAttacked{"Already attacked?"}
+    CheckAttacked -- No --> Act_StealthClose["Shadow Hide (AP-1)"] --> End_Stealth
+    CheckAttacked -- Yes --> Act_NormNoStealth["Basic attack (AP-1) &lt;br/&gt; [HasAttacked = True]"] --> Phase_Decision</pre></div>
+        </div>
+
+        <div class="flowchart-card">
+          <h5>Wizard</h5>
+          <div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start(["Wizard turn start"]) --> Init["Initialize state &lt;br/&gt; (check resources/debuffs)"]
+
+    Init --> CheckFear{"Feared?"}
+    CheckFear -- Yes --> SetFear["[Apply penalty] &lt;br/&gt; Damage-3, MP-1, no teleport"] --> CheckKill
+    CheckFear -- No --> CheckKill
+
+    CheckKill{"[Priority 1] &lt;br/&gt; Guaranteed kill with &lt;br/&gt; available slots? (damage-3 adjustment)"}
+    CheckKill -- Yes --> Kill_Loop
+
+    subgraph Kill_Loop ["Optimal Resource Barrage"]
+        K_AP{"AP > 0?"} -- Yes --> K_Calc["Enemy HP vs damage"]
+        K_Calc -- "level 1 enough" --> K_Fire["Fire Bolt (Slot1)"] --> K_AP
+        K_Calc -- "level 2 needed" --> K_MM["Magic Missile (Slot2)"] --> K_AP
+        K_AP -- No --> End_K(["End turn"])
+    end
+
+    CheckKill -- No --> Phase_Decision(("Decision point"))
+    Phase_Decision --> HasAP{"AP > 0?"}
+    HasAP -- No --> End(["End turn"])
+
+    HasAP -- Yes --> IsSafe{"Currently at the &lt;br/&gt; Sweet Spot?"}
+    IsSafe -- No --> MoveStrategy{"Can teleport?"}
+
+    MoveStrategy -- "Yes (not feared)" --> Act_Tele["Teleport to Sweet Spot &lt;br/&gt; (AP-1)"] --> Phase_Decision
+    MoveStrategy -- "No (feared / has MP)" --> Act_Walk["Normal move (MP-1)"] --> IsSafe
+
+    IsSafe -- Yes --> CheckSlots{"Remaining slots > 50%?"}
+
+    CheckSlots -- Yes --> Act_BestMagic["Cast optimal spell &lt;br/&gt; (Fire Bolt/Magic Missile)"] --> Phase_Decision
+
+    CheckSlots -- No --> EvalConv{"Mana conversion condition &lt;br/&gt; (E_conv > 0.8 &amp; HP > 30%)"}
+    EvalConv -- Yes --> Act_Convert["Mana Conversion (AP-1)"] --> Phase_Decision
+
+    EvalConv -- No --> Act_Cantrip["Ranged Cantrip (AP-1)"] --> Phase_Decision</pre></div>
+        </div>
+      </div>
+
+      <h4 class="feature-heading" data-i18n="game.dragonic.gallery.spellHeading">Spell &amp; Ability Design</h4>
+      <p class="gallery-caption" data-i18n="game.dragonic.gallery.spellCaption">The numeric design behind every class's kit: 20 spells across Fighter, Cleric, Wizard, Rogue, and the Dragon boss, each built on a <strong>shared slot-level system</strong> &mdash; the same kind of resource each AI flowchart above checks before casting.</p>
+
+      <div class="cost-table-wrap" style="max-height: 420px; overflow-y: auto;">
+        <table class="cost-table spell-table">
+          <thead>
+            <tr>
+              <th data-i18n="game.dragonic.gallery.spellColSpell">Spell</th>
+              <th data-i18n="game.dragonic.gallery.spellColClass">Class</th>
+              <th data-i18n="game.dragonic.gallery.spellColSlot">Slot Lv.</th>
+              <th data-i18n="game.dragonic.gallery.spellColTarget">Target / Range</th>
+              <th data-i18n="game.dragonic.gallery.spellColUpcast">Upcasts?</th>
+              <th data-i18n="game.dragonic.gallery.spellColEffect">Effect</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Smite <span class="card-name-ko">강타</span></td><td>Fighter</td><td>1</td><td>Single enemy &middot; 1 tile</td><td class="upcast-yes">✓</td><td>3d8 + (spell level &minus; 1)d8 damage</td></tr>
+            <tr><td>Bloodlust <span class="card-name-ko">피의 갈망</span></td><td>Fighter</td><td>2</td><td>Self</td><td class="upcast-no">&ndash;</td><td>1-turn Lifesteal buff</td></tr>
+            <tr><td>Frenzy <span class="card-name-ko">광란</span></td><td>Fighter</td><td>0</td><td>Self</td><td class="upcast-no">&ndash;</td><td>1-turn Frenzy buff</td></tr>
+            <tr><td>Divine Shield <span class="card-name-ko">성스러운 가호</span></td><td>Cleric</td><td>1</td><td>Single ally &middot; 4 tiles</td><td class="upcast-no">&ndash;</td><td>3-turn Blessed buff</td></tr>
+            <tr><td>Curse of Suffering <span class="card-name-ko">고통의 저주</span></td><td>Cleric</td><td>1</td><td>Single enemy &middot; 5 tiles</td><td class="upcast-no">&ndash;</td><td>3-turn Cursed debuff</td></tr>
+            <tr><td>Healing Touch <span class="card-name-ko">치유의 손길</span></td><td>Cleric</td><td>1</td><td>Single ally &middot; 5 tiles</td><td class="upcast-yes">✓</td><td>Heals 1d10 + (spell level &minus; 1)d10, 3-turn Blessed buff</td></tr>
+            <tr><td>Magic Missile <span class="card-name-ko">매직 미사일</span></td><td>Wizard</td><td>2</td><td>Single enemy</td><td class="upcast-yes">✓</td><td>8 &times; (spell level &minus; 1) damage</td></tr>
+            <tr><td>Teleport <span class="card-name-ko">텔레포트</span></td><td>Wizard</td><td>0</td><td>Empty tile &middot; 1 tile</td><td class="upcast-yes">✓</td><td>Move to the farthest tile from the Dragon within (spell level) tiles</td></tr>
+            <tr><td>Weakpoint Strike <span class="card-name-ko">약점 공략</span></td><td>Rogue</td><td>2</td><td>Single enemy &middot; 1 tile</td><td class="upcast-no">&ndash;</td><td>1d10 damage, 2d20 if the target is debuffed</td></tr>
+            <tr><td>Gale Step <span class="card-name-ko">질풍의 보법</span></td><td>Rogue</td><td>1</td><td>Self</td><td class="upcast-no">&ndash;</td><td>2-turn Haste buff</td></tr>
+            <tr><td>Shadow Hide <span class="card-name-ko">그림자 숨기</span></td><td>Rogue</td><td>0</td><td>Self</td><td class="upcast-no">&ndash;</td><td>1-turn Stealth buff</td></tr>
+            <tr><td>Fearful Cry <span class="card-name-ko">공포의 외침</span></td><td>Dragon, Fighter</td><td>1</td><td>Enemies around caster &middot; 3 tiles</td><td class="upcast-no">&ndash;</td><td>3-turn Fear debuff</td></tr>
+            <tr><td>Fire Bolt <span class="card-name-ko">화염탄</span></td><td>Dragon, Wizard</td><td>1</td><td>Single enemy &middot; 4 tiles</td><td class="upcast-yes">✓</td><td>2d8 + (spell level &minus; 1)d6 damage</td></tr>
+            <tr><td>Mana Conversion <span class="card-name-ko">마력전환</span></td><td>Dragon, Wizard</td><td>0</td><td>Self</td><td class="upcast-yes">✓</td><td>Deals (spell level + 1)d10 damage to itself, converting it into a spell slot of that level</td></tr>
+            <tr><td>Tail Swipe <span class="card-name-ko">꼬리 휘두르기</span></td><td>Dragon</td><td>2</td><td>Enemies around Dragon &middot; 2 tiles</td><td class="upcast-no">&ndash;</td><td>1d8 damage</td></tr>
+            <tr><td>Dragon's Fury <span class="card-name-ko">용의 분노</span></td><td>Dragon</td><td>3</td><td>Line of enemies &middot; 4 tiles</td><td class="upcast-yes">✓</td><td>4d6 + (spell level &minus; 3)&times;2d6 damage</td></tr>
+            <tr><td>Meteor <span class="card-name-ko">메테오</span></td><td>Dragon</td><td>3</td><td>All tiles</td><td class="upcast-yes">✓</td><td>3d20 + (spell level &minus; 3)&times;1d20 damage, then 1-turn Exhaustion on itself</td></tr>
+            <tr><td>Purify <span class="card-name-ko">정화</span></td><td>Dragon</td><td>1</td><td>Self</td><td class="upcast-no">&ndash;</td><td>1-turn Purify buff</td></tr>
+            <tr><td>Magma Blast <span class="card-name-ko">용암 발사</span></td><td>Dragon</td><td>2</td><td>Empty tile &middot; 6 tiles</td><td class="upcast-yes">✓</td><td>Summons a Lava Zone</td></tr>
+            <tr><td>Wall Creation <span class="card-name-ko">벽 생성</span></td><td>Dragon</td><td>1</td><td>Empty tile &middot; 5 tiles</td><td class="upcast-yes">✓</td><td>Summons a Wall</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="gallery-caption" data-i18n="game.dragonic.gallery.spellUpcastNote">Upcasting means spending a higher-level slot than a spell requires. Whether it's worth it depends on the spell: Fire Bolt gains an extra damage die for every slot level spent on it, but Bloodlust's lifesteal buff is just as strong on its minimum slot as on a much higher one. Every slot spent means choosing between casting now and saving it for something that scales.</p>
+      <p class="gallery-caption" data-i18n="game.dragonic.gallery.spellTerrainNote">Magma Blast and Wall Creation are the spells behind the "reshape terrain mid-battle" system mentioned above &mdash; summoning a lava zone or a wall onto an empty tile. Meteor, the Dragon's board-wipe ultimate, inflicts a turn of Exhaustion on the Dragon itself after casting, giving the strongest hit in the kit its own built-in cooldown.</p>
+      <p class="design-insight" data-i18n="game.dragonic.gallery.designInsight">Every flowchart uses the same resources &mdash; AP, MP, spell slots. A skilled player can predict the opponent's play and prepare for it.</p>
+    </section>
+
+    <section class="gallery-section" id="behind-the-scenes">
+      <h3 class="gallery-title" data-i18n="game.dragonic.gallery.title">Behind the Scenes</h3>
+      <p class="gallery-intro" data-i18n="game.dragonic.gallery.intro">The real C++ that runs the design above.</p>
+
+      <h4 class="feature-heading" data-i18n="game.dragonic.gallery.systemsHeading">In the Shipped Game</h4>
+      <p class="gallery-caption" data-i18n="game.dragonic.gallery.systemsCaption">Two pieces of the real C++ implementation behind the flowcharts above.</p>
+
+      <div class="tool-card">
+        <h5>BattleOrchestrator.cpp</h5>
+        <p data-i18n="game.dragonic.gallery.battleOrchestratorDesc">The turn loop that actually runs the flowcharts above: every frame it asks the AI system for a decision, executes it, and loops back until the AI ends its turn, handling an animation wait, a "thinking" delay, and an <strong>infinite-loop guard</strong> along the way. (The decision logic itself — what the AI actually picks — was implemented by my teammate Sangyun Lee, based on the flowcharts I designed.)</p>
+        <div class="code-snippet">
+          <div class="code-label">BattleOrchestrator.cpp</div>
+          <pre><code>void BattleOrchestrator::HandleAITurn(Character* ai_character, TurnManager* turn_manager, AISystem* ai_system, double dt)
+{
+  // ... (a per-character "thinking" delay, a wait for the move animation to
+  // finish, and a non-blocking post-action wait are handled above)
+
+  // Ask the AI for a decision
+  AIDecision decision = ai_system->MakeDecision(ai_character);
+
+  // Branch on the decision
+  if (decision.type == AIDecisionType::EndTurn)
+  {
+    Engine::GetLogger().LogEvent(ai_character->TypeName() + " ends turn. Reason: " + decision.reasoning);
+    turn_manager->EndCurrentTurn();
+  }
+  else if (!ai_system->ExecuteDecision(ai_character, decision))
+  {
+    // Unreachable move / failed cast / etc. -&gt; end turn to prevent an infinite loop
+    Engine::GetLogger().LogEvent(ai_character->TypeName() + " could not execute decision (" + decision.reasoning + "), ending turn.");
+    turn_manager->EndCurrentTurn();
+  }
+  // else: re-enters HandleAITurn next frame -&gt; MakeDecision repeats
+}</code></pre>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <h5>ActionPoints.cpp</h5>
+        <p data-i18n="game.dragonic.gallery.actionPointsDesc">AP is the resource every flowchart above spends to act &mdash; it's the design lever behind "can I guarantee a kill this turn," and the answer isn't automatically yes. The comment on SetPoints() comes from a bug that lever surfaced: Haste's on-turn-start bonus needs to push AP past the max, or clamping to it silently cancels the bonus the instant it's granted.</p>
+        <div class="code-snippet">
+          <div class="code-label">ActionPoints.cpp</div>
+          <pre><code>void ActionPoints::SetPoints(int new_points)
+{
+  // Haste's OnTurnStart bonus (AP+1) needs to be able to exceed max_points.
+  // Clamping to max_points would always cancel out the bonus that's applied
+  // right after RefreshActionPoints() (= max_points), so the effect would
+  // only ever show up on the turn it was cast.
+  current_points = std::max(0, new_points);
+}</code></pre>
+        </div>
+      </div>
+
+      <h4 class="feature-heading" data-i18n="game.dragonic.gallery.uiHeading">UI System Demo</h4>
+      <p class="gallery-caption" data-i18n="game.dragonic.gallery.uiCaption">A standalone raylib demo I built to prototype the game's UI layout. Every element — slot size, button width, panel height — is sized as <strong>a multiple of one tile unit (64px)</strong>, so the UI always stays grid-aligned with the world. A debug overlay (Tab) reports each element's position and size back in tile units to verify it.</p>
+      <div class="shot-grid">
+        <div class="shot-card">
+          <img src="../assets/dragonic-gallery/ui-demo.png" alt="Dragonic Tactics UI system demo screenshot" loading="lazy">
+          <p class="shot-caption" data-i18n="game.dragonic.gallery.uiShotNormal">Normal view</p>
+        </div>
+        <div class="shot-card">
+          <img src="../assets/dragonic-gallery/ui-demo-debug.png" alt="Dragonic Tactics UI system demo with debug overlay showing tile-unit measurements" loading="lazy">
+          <p class="shot-caption" data-i18n="game.dragonic.gallery.uiShotDebug">Debug overlay (Tab) — each box reports its position and size in tile units</p>
+        </div>
+      </div>
+      <div class="code-snippet">
+        <div class="code-label">ui.cpp</div>
+        <pre><code>constexpr int tile_size = 64;
+
+// ...
+
+int ui_box_height = tile_size * 1.5;
+int slot_size = tile_size;
+
+// ...
+
+DrawRectangle(turn_button_position_x, turn_button_position_y, 2 * slot_size, slot_size, RED);</code></pre>
+      </div>
+
+      <h4 class="feature-heading" data-i18n="game.dragonic.gallery.toolsHeading">Tools I Built</h4>
+      <div class="tool-card">
+        <h5><span data-i18n="game.dragonic.gallery.fontToPngTitle">Font Atlas Baker</span> <span class="tool-filename">font_to_png</span></h5>
+        <p data-i18n="game.dragonic.gallery.fontToPngDesc">Our custom CS230 engine's Font class needs a specific bitmap atlas format that tools like BMFont or Hiero don't produce, so I used stb_truetype to build the pixel layout by hand: a <strong>hidden "marker row"</strong> of alternating colors along the top edge of the image encodes each character's advance width, which the engine reads back in on load.</p>
+        <div class="code-snippet">
+          <div class="code-label">RenderGlyph.cpp</div>
+          <pre><code>// 8a. Draw Marker Row (y = 0): fill a horizontal segment on the first row
+//     with the current marker color. The width is the `advance` width.
+for (int x = current_x; x &lt; current_x + info.advance; ++x) {
+    int targetIndex = (x * CHANNELS); // y=0
+    atlasBitmap[targetIndex + 0] = color[0]; // R (G/B/A follow the same pattern)
+}
+
+// 8c. Update state for the next character
+current_x += info.advance;    // Move the "pen"
+colorIndex = 1 - colorIndex;  // Flip the marker color (0-&gt;1, 1-&gt;0)</code></pre>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+  <div class="lightbox-toolbar" id="lightbox-toolbar">
+    <button type="button" id="lightbox-zoom-out" aria-label="Zoom out">&minus;</button>
+    <span class="lightbox-zoom-level" id="lightbox-zoom-level">100%</span>
+    <button type="button" id="lightbox-zoom-in" aria-label="Zoom in">+</button>
+    <button type="button" class="zoom-reset-btn" id="lightbox-zoom-reset" data-i18n="lightbox.reset">Reset</button>
+  </div>
+  <div class="lightbox-content" id="lightbox-content">
+    <div class="lightbox-stage" id="lightbox-stage"></div>
+  </div>
+  <p class="lightbox-hint" data-i18n="lightbox.hint">Scroll to zoom &middot; drag to pan &middot; double-click to reset</p>
+</div>
+
+<script>
+  const frame = document.getElementById('game-frame');
+  const loading = document.getElementById('loading');
+  function hideLoading() {
+    loading.style.opacity = '0';
+    setTimeout(() => { loading.style.display = 'none'; }, 300);
+  }
+  let frameAlreadyLoaded = false;
+  try { frameAlreadyLoaded = frame.contentDocument && frame.contentDocument.readyState === 'complete'; } catch (e) {}
+  if (frameAlreadyLoaded) {
+    hideLoading();
+  } else {
+    frame.addEventListener('load', () => setTimeout(hideLoading, 400));
+  }
+
+  const fullscreenBtn = document.getElementById('fullscreen-btn');
+  if (fullscreenBtn) {
+    fullscreenBtn.addEventListener('click', () => {
+      const req = frame.requestFullscreen || frame.webkitRequestFullscreen || frame.mozRequestFullScreen || frame.msRequestFullscreen;
+      if (req) req.call(frame);
+    });
+  }
+</script>
+
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'base',
+    themeVariables: {
+      background: '#30497d',
+      primaryColor: '#30497d',
+      primaryTextColor: '#e8eaf0',
+      primaryBorderColor: '#455b8a',
+      lineColor: '#a9b6d4',
+      secondaryColor: '#253c6d',
+      tertiaryColor: '#253c6d',
+      fontFamily: 'Inter, sans-serif',
+      edgeLabelBackground: '#253c6d'
+    }
+  });
+
+  const lightbox = document.getElementById('lightbox');
+  const lightboxContent = document.getElementById('lightbox-content');
+  const stage = document.getElementById('lightbox-stage');
+  const zoomLevelLabel = document.getElementById('lightbox-zoom-level');
+  const zoomOutBtn = document.getElementById('lightbox-zoom-out');
+
+  const MAX_SCALE = 8;
+  let scale = 1, panX = 0, panY = 0;
+  let fitScale = 1;
+  let currentNode = null;
+  let isPanning = false, didPan = false;
+  let panStartX = 0, panStartY = 0, panOriginX = 0, panOriginY = 0;
+
+  function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
+  function applyTransform() {
+    stage.style.transform = 'translate(' + panX + 'px, ' + panY + 'px) scale(' + scale + ')';
+    zoomLevelLabel.textContent = Math.round(scale * 100) + '%';
+    zoomOutBtn.disabled = scale <= fitScale + 0.001;
+  }
+
+  function fitAndCenter() {
+    if (!currentNode) return;
+    const prevTransform = stage.style.transform;
+    stage.style.transform = 'none';
+    const naturalW = currentNode.getBoundingClientRect().width || 1;
+    const naturalH = currentNode.getBoundingClientRect().height || 1;
+    const containerRect = lightboxContent.getBoundingClientRect();
+    fitScale = clamp(Math.min(containerRect.width / naturalW, containerRect.height / naturalH, 1), 0.01, MAX_SCALE);
+    scale = fitScale;
+    panX = (containerRect.width - naturalW * scale) / 2;
+    panY = (containerRect.height - naturalH * scale) / 2;
+    stage.style.transform = prevTransform;
+    applyTransform();
+  }
+
+  function zoomAt(clientX, clientY, newScale) {
+    if (newScale <= fitScale) {
+      // Floor is the fit-to-view size — snap back to a clean centered fit
+      // instead of leaving it anchored at whatever point was under the cursor.
+      fitAndCenter();
+      return;
+    }
+    const rect = lightboxContent.getBoundingClientRect();
+    const offsetX = clientX - rect.left;
+    const offsetY = clientY - rect.top;
+    const contentX = (offsetX - panX) / scale;
+    const contentY = (offsetY - panY) / scale;
+    scale = clamp(newScale, fitScale, MAX_SCALE);
+    panX = offsetX - contentX * scale;
+    panY = offsetY - contentY * scale;
+    applyTransform();
+  }
+
+  function zoomAtCenter(factor) {
+    const rect = lightboxContent.getBoundingClientRect();
+    zoomAt(rect.left + rect.width / 2, rect.top + rect.height / 2, scale * factor);
+  }
+
+  function prepareNode(node) {
+    // Mermaid's SVG ships width="100%" with no height, which collapses to 0x0
+    // once it's cloned outside .mermaid-wrap's constraining ancestor. Give it an
+    // explicit pixel size from its viewBox so it has real intrinsic dimensions.
+    if (node.tagName && node.tagName.toLowerCase() === 'svg') {
+      const vb = node.getAttribute('viewBox');
+      if (vb) {
+        const parts = vb.trim().split(/\s+/).map(Number);
+        if (parts.length === 4 && parts[2] > 0 && parts[3] > 0) {
+          node.style.width = parts[2] + 'px';
+          node.style.height = parts[3] + 'px';
+        }
+      }
+    }
+  }
+
+  function openLightbox(node) {
+    stage.innerHTML = '';
+    currentNode = node.cloneNode(true);
+    prepareNode(currentNode);
+    stage.appendChild(currentNode);
+    lightbox.hidden = false;
+    if (currentNode.tagName && currentNode.tagName.toLowerCase() === 'img' && !currentNode.complete) {
+      // Source <img> can be loading="lazy" and not finished decoding yet, which
+      // would make the fit-to-view measurement below read a 0x0 box.
+      currentNode.addEventListener('load', () => { if (!lightbox.hidden) fitAndCenter(); }, { once: true });
+    }
+    requestAnimationFrame(fitAndCenter);
+  }
+
+  function closeLightbox() {
+    lightbox.hidden = true;
+    isPanning = false;
+    stage.classList.remove('is-dragging');
+  }
+
+  document.querySelectorAll('.flowchart-card').forEach((card) => {
+    card.addEventListener('click', () => {
+      const svg = card.querySelector('svg');
+      if (svg) openLightbox(svg);
+    });
+  });
+  document.querySelectorAll('.shot-card img').forEach((img) => {
+    img.addEventListener('click', () => openLightbox(img));
+  });
+
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lightbox.hidden) closeLightbox(); });
+  window.addEventListener('resize', () => { if (!lightbox.hidden) fitAndCenter(); });
+
+  lightboxContent.addEventListener('wheel', (e) => {
+    if (!currentNode) return;
+    e.preventDefault();
+    const factor = e.deltaY < 0 ? 1.15 : 1 / 1.15;
+    zoomAt(e.clientX, e.clientY, scale * factor);
+  }, { passive: false });
+
+  stage.addEventListener('pointerdown', (e) => {
+    if (!currentNode) return;
+    isPanning = true;
+    didPan = false;
+    stage.setPointerCapture(e.pointerId);
+    panStartX = e.clientX; panStartY = e.clientY;
+    panOriginX = panX; panOriginY = panY;
+    stage.classList.add('is-dragging');
+  });
+  stage.addEventListener('pointermove', (e) => {
+    if (!isPanning) return;
+    const dx = e.clientX - panStartX;
+    const dy = e.clientY - panStartY;
+    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) didPan = true;
+    panX = panOriginX + dx;
+    panY = panOriginY + dy;
+    applyTransform();
+  });
+  function endPan() {
+    isPanning = false;
+    stage.classList.remove('is-dragging');
+  }
+  stage.addEventListener('pointerup', endPan);
+  stage.addEventListener('pointercancel', endPan);
+  stage.addEventListener('dblclick', () => {
+    if (!currentNode) return;
+    if (didPan) { didPan = false; return; }
+    fitAndCenter();
+  });
+
+  document.getElementById('lightbox-zoom-in').addEventListener('click', () => zoomAtCenter(1.25));
+  document.getElementById('lightbox-zoom-out').addEventListener('click', () => zoomAtCenter(1 / 1.25));
+  document.getElementById('lightbox-zoom-reset').addEventListener('click', fitAndCenter);
+</script>
+
+</body>
+</html>
